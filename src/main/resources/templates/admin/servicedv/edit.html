@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="keywords"
+              content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"/>
+        <meta name="description"
+              content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"/>
+        <meta name="robots" content="noindex,nofollow"/>
+        <title>Ample Admin Lite Template by WrapPixel</title>
+        <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+        <!-- Favicon icon -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+          <style>
+             body {
+                background-color: #f5f5f5;
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container-fluid {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            .white-box {
+                width: 400px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+                text-align: center;
+            }
+
+            form {
+                text-align: left;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 16px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
+            a {
+                display: block;
+                margin-top: 16px;
+                text-decoration: none;
+                color: #4CAF50;
+            }
+
+            .alert {
+                color: #721c24;
+                background-color: #f8d7da;
+                border: 1px solid #f5c6cb;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 16px;
+            }
+
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                    <div class="page-wrapper" style="min-height: 250px;">
+                         <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="white-box">
+                                <h2>Edit Service Category</h2>
+
+                                <form th:object="${categoryDto}" th:action="@{/admin/serviceCategories/edit/{id}(id=${categoryDto.id})}" method="post">
+
+                                    <!-- Display validation errors, if any -->
+                                    <div th:if="${#fields.hasErrors('*')}" class="alert">
+                                        <p th:each="error : ${#fields.errors('*')}" th:text="${error}"></p>
+                                    </div>
+
+                                    <!-- Input fields for editing service category details -->
+                                    <div>
+                                        <label for="name">Category Name:</label>
+                                        <input type="text" id="name" th:field="*{name}" />
+                                    </div>
+
+                                    <!-- Add other fields as needed -->
+
+                                    <button type="submit">Update</button>
+                                </form>
+
+                                <a th:href="@{/admin/serviceCategories/all}">Back to Service Categories</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script th:src="@{/assets/plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script th:src="@{/assets/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/assets/js/app-style-switcher.js}"></script>
+        <!--Wave Effects -->
+        <script th:src="@{/assets/js/waves.js}"></script>
+        <!--Menu sidebar -->
+        <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+        <!--Custom JavaScript -->
+        <script th:src="@{/assets/js/custom.js}"></script>
+        <script>
+            function toggleSearchForm() {
+                var searchForm = document.querySelector('.search-form');
+                searchForm.classList.toggle('active');
+            }
+        </script>
+    </body>
+
+</html>
