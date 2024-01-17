@@ -53,7 +53,7 @@ public class Servicedv {
     private Integer serviceDuration;
 
     // Trạng thái của dịch vụ (ví dụ: "đang hoạt động", "tạm dừng", "hết hạn")
-    private String status;
+    private boolean status;
 
     
 

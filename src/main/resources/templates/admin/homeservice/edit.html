@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+        <link th:href="@{/admin/dist/css/servicedv/create.css}" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                    <div class="page-wrapper" style="min-height: 250px;">
+                         <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="white-box">
+                                <h2 class="box-title">Edit Service </h2>
+
+                                <form th:action="@{'/admin/servicedv/edit/' + ${servicedv.id}}" th:object="${servicedv}" method="post"
+                                      enctype="multipart/form-data">
+                                    <div class="form-container">
+                                        <div class="form-half">
+                                    <input type="hidden" th:field="*{id}" />
+                                    <!-- Input fields for editing service details -->
+                                    <label>Name:</label>
+                                    <input type="text" th:field="*{name}" required><br>
+
+                                    <label>Price:</label>
+                                    <input type="text" th:field="*{price}" required><br>
+                                    <label>Status:</label>
+                                    <select th:field="*{status}">
+                                        <option value="true" th:text="Active" th:selected="${servicedv.status}"></option>
+                                        <option value="false" th:text="Inactive" th:selected="${!servicedv.status}"></option>
+                                    </select><br>
+
+                                    <label>Description:</label>
+                                    <textarea th:field="*{description}" rows="4" cols="50"></textarea><br>
+
+                                    
+
+                                    
+                                    </div>
+
+
+                                        <div class="form-half">
+                                    <label>Category:</label>
+                                    <select th:field="*{category.id}">
+                                        <!-- Displaying categories from the model -->
+                                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" 
+                                                th:selected="${category.id eq servicedv.category.id}"></option>
+                                    </select><br>
+                                    <label>Quantity:</label>
+                                    <input type="number" th:field="*{quantity}" required><br>
+
+                                    <label>Service Duration:</label>
+                                    <input type="number" th:field="*{serviceDuration}" required><br>
+
+
+                                    <!-- Input field for uploading image -->
+                                    <label>Image:</label>
+                                    <input type="file" class="form-control-file" id="photo" th:field="*{image}" />
+
+                                    <!-- Display current image -->
+                                    <img width="100%" th:if="${servicedv.image}" th:src="@{'/image/' + ${servicedv.image}}" alt="Current Image" />
+
+                                    <!-- Submit button -->
+                                     </div>
+                                    </div>
+                                    <button type="submit">Save Changes</button>
+                                </form>
+
+
+
+                                <a class="btn " style="background-color: #97FADC" href="/admin/servicedv/all">Back to Service </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- ============================================================== -->
+                    <!-- End PAge Content -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Right sidebar -->
+                    <!-- ============================================================== -->
+                    <!-- .right-sidebar -->
+                    <!-- ============================================================== -->
+                    <!-- End Right sidebar -->
+                    <!-- ============================================================== -->
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script th:src="@{/assets/plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script th:src="@{/assets/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/assets/js/app-style-switcher.js}"></script>
+        <!--Wave Effects -->
+        <script th:src="@{/assets/js/waves.js}"></script>
+        <!--Menu sidebar -->
+        <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+        <!--Custom JavaScript -->
+        <script th:src="@{/assets/js/custom.js}"></script>
+        <script>
+            function toggleSearchForm() {
+                var searchForm = document.querySelector('.search-form');
+                searchForm.classList.toggle('active');
+            }
+        </script>
+    </body>
+
+</html>

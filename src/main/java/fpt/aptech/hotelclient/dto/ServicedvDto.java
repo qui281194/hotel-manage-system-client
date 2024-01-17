@@ -4,9 +4,11 @@
  */
 package fpt.aptech.hotelclient.dto;
 
+import fpt.aptech.hotelclient.models.ServiceCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -22,11 +24,11 @@ public class ServicedvDto {
     private String description;
     private Integer quantity;
     private Integer serviceDuration;
-    private String status;
-    private String image;
+    private boolean status;
+    private MultipartFile image;
 
     // ServiceCategoryDto thay vì ServiceCategory để tránh vòng lặp khi chuyển đổi
-    private ServiceCategoryDto category;
+    private ServiceCategory category;
 
     
     
