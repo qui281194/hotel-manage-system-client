@@ -16,7 +16,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
         <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
         <!-- Theme style -->
         <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
-
+         <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css"/>
+       
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -29,10 +31,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="index3.html" class="nav-link">Home</a>
+                        <a th:href="@{/user/home/all}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Contact</a>
+                        <a th:href="@{/admin/feedbacks/all}" class="nav-link">Contact</a>
                     </li>
                 </ul>
 
@@ -131,20 +133,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                             </li>
                             <li class="nav-item">
                                 <a th:href="@{/admin/serviceCategories/all}" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Service Categories 
-                                    </p>
+                                     <i class="fa fa-list" aria-hidden="true"></i>
+                                    <span class="hide-menu">Service Categories</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/admin/feedbacks/all}" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Service DV 
-                                    </p>
+                                <a th:href="@{/admin/servicedv/all}" class="nav-link">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    <span class="hide-menu">Service</span>
                                 </a>
                             </li>
+                            
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

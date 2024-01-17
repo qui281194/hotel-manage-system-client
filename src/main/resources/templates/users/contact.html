@@ -20,6 +20,78 @@
         <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
         <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">
+        <style>
+            form label[for="sender"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#sender {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#sender:focus {
+                border-color: #007BFF;
+            }
+             form label[for="subject"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#subject {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#subject:focus {
+                border-color: #007BFF;
+            }
+             form label[for="content"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#content {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#content:focus {
+                border-color: #007BFF;
+            }
+            
+        </style>
     </head>
 
     <body>
@@ -84,17 +156,17 @@
                                 <h2>Your question?</h2>
                                 <form th:object="${feedback}" th:action="@{/user/contact/save}" method="post">
                                     <label for="sender">Sender:</label>
-                                    <input type="text" id="sender" name="sender" th:field="*{sender}" required/><br/>
+                                    <input type="text" id="sender" name="sender" th:field="*{sender}" placeholder="please enter email" required/><br/>
 
                                     <label for="subject">Subject:</label>
-                                    <input type="text" id="subject" name="subject" th:field="*{subject}" required/><br/>
+                                    <input type="text" id="subject" name="subject" th:field="*{subject}" placeholder="please enter Subject" required/><br/>
 
                                     <label for="content">Content:</label>
-                                    <textarea id="content" name="content" th:field="*{content}" required></textarea><br/>
+                                    <textarea id="content" name="content" th:field="*{content}" placeholder="please enter Content" required></textarea><br/>
 
                                     
 
-                                    <button type="submit">Save Feedback</button>
+                                    <button  type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>

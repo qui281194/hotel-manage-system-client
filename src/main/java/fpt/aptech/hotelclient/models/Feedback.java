@@ -47,10 +47,37 @@ public class Feedback {
     private String dated;
 
     // Trạng thái xử lý của phản hồi
-    @Column(name = "process")
+     @Column(name = "process", columnDefinition = "VARCHAR(255) DEFAULT 'Pending'")
     private String process;
 
     // Trạng thái tổng thể của phản hồi
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "VARCHAR(255) DEFAULT 'Unresolved'")
     private String status;
+    /**
+     * Đánh dấu phản hồi là đã xử lý.
+     */
+    public void markAsProcessed() {
+        this.process = "Processed";
+    }
+
+    /**
+     * Đánh dấu phản hồi là chưa xử lý.
+     */
+    public void markAsPending() {
+        this.process = "Pending";
+    }
+
+    /**
+     * Đánh dấu phản hồi là đã giải quyết.
+     */
+    public void markAsResolved() {
+        this.status = "Resolved";
+    }
+
+    /**
+     * Đánh dấu phản hồi là chưa giải quyết.
+     */
+    public void markAsUnresolved() {
+        this.status = "Unresolved";
+    }
 }
