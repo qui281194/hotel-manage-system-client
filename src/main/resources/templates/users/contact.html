@@ -82,11 +82,19 @@
                         <div class="col-lg-6 offset-lg-1 col-md-6 col-sm-7">
                             <div class="contact__form">
                                 <h2>Your question?</h2>
-                                <form action="#">
-                                    <input type="text" placeholder="Your Name">
-                                    <input type="text" placeholder="Email">
-                                    <textarea placeholder="Your Message"></textarea>
-                                    <button type="submit">Send Message</button>
+                                <form th:object="${feedback}" th:action="@{/user/contact/save}" method="post">
+                                    <label for="sender">Sender:</label>
+                                    <input type="text" id="sender" name="sender" th:field="*{sender}" required/><br/>
+
+                                    <label for="subject">Subject:</label>
+                                    <input type="text" id="subject" name="subject" th:field="*{subject}" required/><br/>
+
+                                    <label for="content">Content:</label>
+                                    <textarea id="content" name="content" th:field="*{content}" required></textarea><br/>
+
+                                    
+
+                                    <button type="submit">Save Feedback</button>
                                 </form>
                             </div>
                         </div>

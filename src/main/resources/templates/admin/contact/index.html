@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Feedback List</title>
+    <!-- Include Thymeleaf layout dialect if you are using Thymeleaf Layout Dialect -->
+    <!-- Add other necessary stylesheets and scripts here -->
+</head>
+
+<body>
+
+    <h2>Feedback List</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sender</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Dated</th>
+                <th>Process</th>
+                <th>Status</th>
+                <!-- Add other feedback attributes as needed -->
+            </tr>
+        </thead>
+        <tbody th:each="feedback : ${feedbacks}">
+            <tr>
+                <td th:text="${feedback.id}"></td>
+                <td th:text="${feedback.sender}"></td>
+                <td th:text="${feedback.subject}"></td>
+                <td th:text="${feedback.content}"></td>
+                <td th:text="${feedback.dated}"></td>
+                <td th:text="${feedback.process}"></td>
+                <td th:text="${feedback.status}"></td>
+                <!-- Add other feedback attributes as needed -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Add other content, styling, or navigation links as needed -->
+
+</body>
+
+</html>
