@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this template
+-->
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Register</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback}"/>
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+
+    </head>
+
+    <body class="register-page" style="min-height: 540px">
+        <div class="register-box">
+            <div class="card card-outline card-primary">
+                <div class="card-header text-center">
+                    <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/users/register-customer}" th:object="${newUser}" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" id="name" th:field="*{name}" placeholder="Name" class="form-control" required/>
+                            <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span ></span> 
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" id="email" th:field="*{email}" placeholder="Email" class="form-control" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+                            <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span ></span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" id="password" th:field="*{password}" placeholder="Password" class="form-control" minlength="8" required/>
+                            <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span ></span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" id="address" th:field="*{address}" placeholder="Address" class="form-control" required/>
+                            <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span></span> 
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="tel" id="phone" th:field="*{phone}" placeholder="Phone" class="form-control" required/>
+                            <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span></span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                    </form>
+                    <p th:if="${error}" style="color: red" th:text="${error}"></p>
+                    <br/>
+
+                    <a th:href="@{/login}" class="text-center">Login</a>
+                </div>
+                <!-- /.form-box -->
+            </div><!-- /.card -->
+        </div>
+
+        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>AdminLTE 3 | jsGrid</title>
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- jsGrid -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid-theme.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>User</h1>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Staff</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div id="jsGrid1" class="jsgrid">
+                                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                    <table class="jsgrid-table">
+                                        <thead>
+                                            <tr class="jsgrid-header-row">
+                                                <th class="jsgrid-header-cell jsgrid-header-sortable" >Name</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" >Email</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Address</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Phone</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Is Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="user : ${users}" th:if="${user.role_id == 1 or user.role_id == 2}">
+                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td th:text="${user.address}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td>
+                                                    <a th:href="@{/admin/user/{id}/edit(id=${user.id})}" class="btn btn-primary">Edit</a>
+
+                                                    <a th:href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="jsgrid-pager-container">
+                                    <div class="jsgrid-pager">Pages: 
+                                        <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
+                                            <a href="javascript:void(0);">First</a>
+                                        </span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
+                                            <a href="javascript:void(0);">Prev</a>
+                                        </span> 
+                                        <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span>
+                                        <span class="jsgrid-pager-nav-button">
+                                            <a href="javascript:void(0);">Next</a>
+                                        </span>
+                                        <span class="jsgrid-pager-nav-button">
+                                            <a href="javascript:void(0);">Last</a>
+                                        </span> &nbsp;&nbsp; 1 of 5 
+                                    </div>
+                                </div>
+                                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;">
+
+                                </div>
+                                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <hr/>
+
+                        <div class="card-header">
+                            <h3 class="card-title">Customer</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+                                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                    <table class="jsgrid-table">
+                                        <thead>
+                                            <tr class="jsgrid-header-row">
+                                                <th class="jsgrid-header-cell jsgrid-header-sortable" >Name</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" >Email</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Address</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Phone</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Is Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="user : ${users}" th:if="${user.role_id == 3}">
+                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td th:text="${user.address}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td>
+                                                    <a th:href="@{/admin/user/{id}/edit(id=${user.id})}" class="btn btn-primary">Edit</a>
+
+                                                    <a href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger" onclick="confirmDelete(${user.id})">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="jsgrid-pager-container">
+                                    <div class="jsgrid-pager">Pages: 
+                                        <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
+                                            <a href="javascript:void(0);">First</a>
+                                        </span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
+                                            <a href="javascript:void(0);">Prev</a>
+                                        </span> 
+                                        <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span>
+                                        <span class="jsgrid-pager-nav-button">
+                                            <a href="javascript:void(0);">Next</a>
+                                        </span>
+                                        <span class="jsgrid-pager-nav-button">
+                                            <a href="javascript:void(0);">Last</a>
+                                        </span> &nbsp;&nbsp; 1 of 5 
+                                    </div>
+                                </div>
+                                <div class="jsgrid-load-shader" style="display: none; position: absolute; inset: 0px; z-index: 1000;">
+
+                                </div>
+                                <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+        
+        <script>
+
+            function confirmDelete(userId) {
+                if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
+                    window.location.href = '/admin/user/' + userId + '/delete';
+                }
+            }
+
+            // Xử lý khi tài liệu đã tải xong
+            document.addEventListener("DOMContentLoaded", function() {
+                // Lấy danh sách tất cả các nút "Xóa"
+                var deleteButtons = document.querySelectorAll(".btn-danger");
+
+                // Gắn sự kiện onclick cho từng nút "Xóa"
+                deleteButtons.forEach(function(button) {
+                    button.addEventListener("click", function(event) {
+                        event.preventDefault();
+
+                        // Lấy giá trị của thuộc tính "href" của nút "Xóa"
+                        var deleteUrl = button.getAttribute("href");
+
+                        // Gọi hàm xác nhận xóa và truyền URL xóa tới nó
+                        confirmDeleteWithUrl(deleteUrl);
+                    });
+                });
+            });
+
+            function confirmDeleteWithUrl(deleteUrl) {
+                if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
+                    window.location.href = deleteUrl;
+                }
+            }
+//            $(function () {
+//                $("#jsGrid1").jsGrid({
+//                    height: "100%",
+//                    width: "100%",
+//                    sorting: true,
+//                    paging: true,
+//                    data: db.clients,
+//                    fields: [
+//                        {name: "Name", type: "text", width: 150},
+//                        {name: "Age", type: "number", width: 50},
+//                        {name: "Address", type: "text", width: 200},
+//                        {name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name"},
+//                        {name: "Married", type: "checkbox", title: "Is Married"}
+//                    ]
+//                });
+//            });
+
+
+        </script>
+        <!-- jQuery -->
+        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+        <!-- Bootstrap 4 -->
+        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <!-- jsGrid -->
+        <script th:src="@{/admin/plugins/jsgrid/demos/db.js}"></script>
+        <script th:src="@{/admin/plugins/jsgrid/jsgrid.min.js}"></script>
+        <!-- AdminLTE App -->
+        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script th:src="@{/admin/dist/js/demo.js}"></script>
+        <!-- Page specific script -->
+        
+    </body>
+
+</html>

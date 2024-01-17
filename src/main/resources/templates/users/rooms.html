@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zxx" xxmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/users/layout">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Hiroto Template">
+        <meta name="keywords" content="Hiroto, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hotel|Lat|Loi - Rooms</title>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <!-- Css Styles -->
+        <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/nice-select.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/jquery-ui.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <!-- Page Preloder -->
+            <div id="preloder">
+                <div class="loader"></div>
+            </div>
+
+
+
+            <!-- Breadcrumb Begin -->
+            <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="breadcrumb__text">
+                                <h1>Our Room</h1>
+                                <div class="breadcrumb__links">
+                                    <a th:href="@{/user/home/all}">Home</a>
+                                    <span>Rooms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <!-- Rooms Section Begin -->
+            <section class="rooms spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 p-0 order-lg-2 order-md-2 col-md-6">
+                            <div class="room__pic__slider owl-carousel">
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6">
+                            <div class="room__text">
+                                <h3>Premium King Room</h3>
+                                <h2><sup>$</sup>99<span>/day</span></h2>
+                                <ul>
+                                    <li><span>Size:</span>30 ft</li>
+                                    <li><span>Capacity:</span>Max persion 3</li>
+                                    <li><span>Bed:</span>King Beds</li>
+                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
+                                    <li><span>View:</span>Sea View</li>
+                                </ul>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-3 order-md-3 col-md-6">
+                            <div class="room__pic__slider owl-carousel">
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-4 order-md-4 col-md-6">
+                            <div class="room__text right__text">
+                                <h3>Deluxe Room</h3>
+                                <h2><sup>$</sup>86<span>/day</span></h2>
+                                <ul>
+                                    <li><span>Size:</span>30 ft</li>
+                                    <li><span>Capacity:</span>Max persion 3</li>
+                                    <li><span>Bed:</span>King Beds</li>
+                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
+                                    <li><span>View:</span>Sea View</li>
+                                </ul>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-6 order-md-6 col-md-6">
+                            <div class="room__pic__slider owl-carousel">
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-5 order-md-5 col-md-6">
+                            <div class="room__text">
+                                <h3>Double Room</h3>
+                                <h2><sup>$</sup>71<span>/day</span></h2>
+                                <ul>
+                                    <li><span>Size:</span>30 ft</li>
+                                    <li><span>Capacity:</span>Max persion 3</li>
+                                    <li><span>Bed:</span>King Beds</li>
+                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
+                                    <li><span>View:</span>Sea View</li>
+                                </ul>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-7 order-md-7 col-md-6">
+                            <div class="room__pic__slider owl-carousel">
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
+                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-0 order-lg-8 order-md-8 col-md-6">
+                            <div class="room__text right__text">
+                                <h3>Luxury Room</h3>
+                                <h2><sup>$</sup>79<span>/day</span></h2>
+                                <ul>
+                                    <li><span>Size:</span>30 ft</li>
+                                    <li><span>Capacity:</span>Max persion 3</li>
+                                    <li><span>Bed:</span>King Beds</li>
+                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
+                                    <li><span>View:</span>Sea View</li>
+                                </ul>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pagination__number">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">Next <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Rooms Section End -->
+
+        </div>
+        <!-- Js Plugins -->
+        <script th:src="@{/users/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/users/js/bootstrap.min.js}"></script>
+        <script th:src="@{/users/js/jquery.nice-select.min.js}"></script>
+        <script th:src="@{/users/js/jquery-ui.min.js}"></script>
+        <script th:src="@{/users/js/jquery.slicknav.js}"></script>
+        <script th:src="@{/users/js/owl.carousel.min.js}"></script>
+        <script th:src="@{/users/js/main.js}"></script>
+    </body>
+
+</html>
