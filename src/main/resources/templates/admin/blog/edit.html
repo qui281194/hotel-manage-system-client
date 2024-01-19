@@ -1,0 +1,61 @@
+<!-- Assuming you have a Thymeleaf template named "edit.html" in the "admin/blog" folder -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Add your head content here -->
+    </head>
+    <body>
+
+        <!-- Your page content -->
+
+        <form th:action="@{'/admin/blogs/edit/' + ${blogs.id}}" method="post" th:object="${blogs}" enctype="multipart/form-data">
+            <div class="form-container">
+                <div class="form-half">
+                    <!-- Left half of the form -->
+                    <input type="hidden" th:field="*{id}" />
+
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" th:field="*{title}" required>
+
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" th:field="*{content}" required></textarea>
+
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" th:field="*{author}" required>
+
+                    <!-- Add other left-half form elements here -->
+                </div>
+
+                <div class="form-half">
+                    <!-- Right half of the form -->
+
+                    
+                     <label for="imageUrl">Image URL:</label>
+                    <input type="file" class="form-control-file" id="imageUrl" th:field="*{imageUrl}" />
+
+                    <!-- Display current image -->
+                    <img width="100%" th:if="${blogs.imageUrl}" th:src="@{'/image/' + ${blogs.imageUrl}}" alt="Current Image" />
+
+                    <!-- Submit button -->
+
+                    <label for="views">Views:</label>
+                    <input type="number" id="views" name="views" th:field="*{views}" required>
+
+                    <label for="likes">Likes:</label>
+                    <input type="number" id="likes" name="likes" th:field="*{likes}" required>
+
+                    <!-- Add other right-half form elements here -->
+
+                </div>
+            </div>
+
+            <!-- Add other form elements here, if any -->
+
+            <button type="submit">Update</button>
+        </form>
+
+        <!-- Your page content -->
+
+    </body>
+</html>

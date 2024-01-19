@@ -33,14 +33,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/admin/servicedv")
 public class ServicedvController {
-    
+
     @Value("${upload.path}")
     private String filterUpload;
     private final String apiUrl = "http://localhost:9999/api/servicedvcontroller/";
 
     RestTemplate restTemplate = new RestTemplate();
-    
-     @GetMapping("/all")
+
+    @GetMapping("/all")
     public String all(Model model) {
         // Gọi API để lấy danh sách tất cả các dịch vụ
 //        Servicedv servicesArray = restTemplate.getForObject(apiUrl + "all", Servicedv.class);
@@ -54,7 +54,8 @@ public class ServicedvController {
         // Trả về tên của view (được giả định là "all.html" trong thư mục "admin/servicedv")
         return "admin/homeservice/index";
     }
-     @GetMapping("/create")
+
+    @GetMapping("/create")
     public String createForm(Model model) {
         // Gọi API để lấy danh sách tất cả các danh mục
         ServiceCategoryDto[] categoriesArray = restTemplate.getForObject(apiUrl + "categories", ServiceCategoryDto[].class);
@@ -69,8 +70,8 @@ public class ServicedvController {
         // Trả về tên của view (được giả định là "create.html" trong thư mục "admin/servicedv")
         return "admin/homeservice/create";
     }
- 
-@PostMapping("/create")
+
+    @PostMapping("/create")
     public String Createproduct(@ModelAttribute("servicedv") ServicedvDto newproduct,
             Model model, RedirectAttributes redirectAttributes) throws IOException {
         MultipartFile file = newproduct.getImage();
@@ -83,17 +84,16 @@ public class ServicedvController {
             FileCopyUtils.copy(newproduct.getImage().getBytes(), new File(filterUpload, fileName));
 
             Servicedv product = new Servicedv();
-           
+
             product.setName(newproduct.getName());
             product.setPrice(newproduct.getPrice());
-            
+
             product.setDescription(newproduct.getDescription());
             product.setQuantity(newproduct.getQuantity());
             product.setServiceDuration(newproduct.getServiceDuration());
-            
-           
+
             product.setStatus(newproduct.isStatus());
-             product.setImage(fileName);
+            product.setImage(fileName);
             product.setCategory(newproduct.getCategory());
 
             // ... xử lý các thông tin khác và lưu vào cơ sở dữ liệu
@@ -105,31 +105,33 @@ public class ServicedvController {
         }
 
     }
-    @GetMapping("/delete/{id}")
-public String deleteService(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-    try {
-        String deleteUrl = apiUrl + "delete/" + id; // Endpoint của RESTful API để xóa đối tượng theo ID
-        restTemplate.delete(deleteUrl);
-        return "redirect:/admin/servicedv/all";
-    } catch (Exception e) {
-        redirectAttributes.addFlashAttribute("error", "Xóa dịch vụ thất bại");
-        return "redirect:/admin/servicedv/all";
-    }
-}
 
-     @GetMapping("/edit/{id}")
+    @GetMapping("/delete/{id}")
+    public String deleteService(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            String deleteUrl = apiUrl + "delete/" + id; // Endpoint của RESTful API để xóa đối tượng theo ID
+            restTemplate.delete(deleteUrl);
+            return "redirect:/admin/servicedv/all";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Xóa dịch vụ thất bại");
+            return "redirect:/admin/servicedv/all";
+        }
+    }
+
+    @GetMapping("/edit/{id}")
     public String editForm(@PathVariable Integer id, Model model) {
-        Servicedv serviceDetails = restTemplate.getForObject(apiUrl + "edit/"+id, Servicedv.class);
+        Servicedv serviceDetails = restTemplate.getForObject(apiUrl + "edit/" + id, Servicedv.class);
         List<ServiceCategoryDto> categories = Arrays.asList(restTemplate.getForObject(apiUrl + "categories", ServiceCategoryDto[].class));
         model.addAttribute("servicedv", serviceDetails);
         model.addAttribute("categories", categories);
         return "admin/homeservice/edit";
     }
- @PostMapping("/edit/{id}")
+
+    @PostMapping("/edit/{id}")
     public String update(@PathVariable("id") Integer id, @ModelAttribute ServicedvDto product,
-                         Model model, RedirectAttributes redirectAttributes) throws IOException {
+            Model model, RedirectAttributes redirectAttributes) throws IOException {
         try {
-            String detailsUrl = apiUrl + "edit/"+id;
+            String detailsUrl = apiUrl + "edit/" + id;
             Servicedv originalService = restTemplate.getForObject(detailsUrl, Servicedv.class);
 
             MultipartFile multipartFile = product.getImage();
@@ -159,6 +161,7 @@ public String deleteService(@PathVariable Integer id, RedirectAttributes redirec
             return "redirect:/admin/servicedv/all";
         }
     }
+
     @GetMapping("/search")
     public String searchServices(@RequestParam("name") String name, Model model) {
         try {
@@ -170,5 +173,5 @@ public String deleteService(@PathVariable Integer id, RedirectAttributes redirec
         }
         return "admin/homeservice/index";
     }
-    
+
 }
