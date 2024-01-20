@@ -86,6 +86,24 @@
                 background-color: #4CAF50;
                 border-color: #4CAF50;
             }
+            .search-form {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            label {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            #searchName {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            .btn-primary {
+                margin-left: 10px; /* Optional: Adjust margin as needed */
+            }
+
 
 
 
@@ -107,16 +125,16 @@
                         <div class="col-md-12">
                             <div class="white-box">
                                 <h3 class="box-title">All Services</h3>
-                                <a class="btn btn-primary btn-sm float-left" th:href="@{/admin/servicedv/create}">Create New Service</a>
-                                <div class="search-container">
+                               
                                 <form class="search-form" th:action="@{'/admin/servicedv/search'}" method="get">
-                                    <div class="form-group">
-                                    <label for="searchName">Search by Name:</label>
-                                    <input type="text" id="searchName" name="name" />
-                                    </div>
+                                  
+                                    <label for="searchName"></label>
+                                    <input type="text" id="searchName" name="name" placeholder="Search by Name" />
+                                  
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </form>
-                                   </div>
+                                 <a class="btn btn-primary btn-sm float-left" th:href="@{/admin/servicedv/create}">Create New Service</a>
+                                   
                                 <table class="table table-bordered table-striped">
                                     <thead class="thead-light">
                                         <tr>

@@ -81,6 +81,24 @@
                 background-color: #4CAF50;
                 border-color: #4CAF50;
             }
+            .search-form {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            label {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            #searchName {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            .btn-primary {
+                margin-left: 10px; /* Optional: Adjust margin as needed */
+            }
+
 
 
 
@@ -94,44 +112,53 @@
                 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
                      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
                     <div class="page-wrapper" style="min-height: 250px;">
-                        <h2>Blog Index</h2>
-                        <a class="btn btn-primary btn-sm float-left" th:href="@{/admin/blogs/create}">Create New Blog</a>
-                        <form class="search-form" th:action="@{'/admin/blogs/search'}" method="get">
-                                    <div class="form-group">
-                                    <label for="searchName">Search by Title</label>
-                                    <input type="text" id="searchName" name="title" />
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="white-box">
+                                        <h2>Blog Index</h2>
+
+                                        <form class="search-form" th:action="@{'/admin/blogs/search'}" method="get">
+
+                                            <label for="searchName"></label>
+                                            <input type="text" id="searchName" name="title" placeholder="Search by Title"/>
+
+                                            <button class="btn btn-primary" type="submit">Search</button>
+                                        </form>
+                                        <a class="btn btn-primary btn-sm float-left" th:href="@{/admin/blogs/create}">Create New Blog</a>
+                                        <table border="1">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Title</th>
+                                                    <th>Content</th>
+
+                                                    <th>Author</th>
+
+                                                    <th>Image URL</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="blog : ${blogs}">
+
+                                                    <td th:text="${blog.title}"></td>
+                                                    <td th:text="${blog.content}"></td>
+
+                                                    <td th:text="${blog.author}"></td>
+
+                                                    <td><img th:src="@{'/image/'+${blog.imageUrl}}" alt="Product Photo" width="100" height="100"></td>
+                                                    <td>
+                                                        <a class="btn btn-primary" th:href="@{/admin/blogs/edit/{id}(id=${blog.id})}">Edit</a>
+                                                        <a class="btn btn-danger" th:href="@{/admin/blogs/delete/{id}(id=${blog.id})}" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </form>
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                   
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                   
-                                    <th>Author</th>
-
-                                    <th>Image URL</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="blog : ${blogs}">
-
-                                    <td th:text="${blog.title}"></td>
-                                    <td th:text="${blog.content}"></td>
-
-                                    <td th:text="${blog.author}"></td>
-
-                                    <td><img th:src="@{'/image/'+${blog.imageUrl}}" alt="Product Photo" width="100" height="100"></td>
-                                    <td>
-                                        <a class="btn btn-primary" th:href="@{/admin/blogs/edit/{id}(id=${blog.id})}">Edit</a>
-                                        <a class="btn btn-danger" th:href="@{/admin/blogs/delete/{id}(id=${blog.id})}" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

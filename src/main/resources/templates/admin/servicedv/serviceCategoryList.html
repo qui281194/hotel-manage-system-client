@@ -86,6 +86,24 @@
             background-color: #4CAF50;
             border-color: #4CAF50;
         }
+        .search-form {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            label {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            #searchName {
+                margin-right: 10px; /* Optional: Adjust margin as needed */
+            }
+
+            .btn-primary {
+                margin-left: 10px; /* Optional: Adjust margin as needed */
+            }
+
 
 
 
@@ -104,19 +122,20 @@
                         <div class="col-md-12">
                             <div class="white-box">
                                 <h3 class="box-title">Service Categories</h3>
-                                <a th:href="@{/admin/serviceCategories/create}" class="btn btn-primary btn-sm float-left">Create New</a>
+                                
 
                                 <!-- Search Container -->
-                                <div class="search-container">
+                                
                                     <!-- Search Form -->
                                     <form class="search-form" th:action="@{/admin/serviceCategories/search}" method="get">
-                                        <div class="form-group">
-                                            <label for="searchCategoryName">Search by Category Name:</label>
+                                       
+                                            <label for="searchCategoryName"></label>
                                             <input type="text" class="form-control-sm" id="searchCategoryName" name="name" placeholder="Enter category name">
-                                        </div>
+                                       
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </form>
-                                </div>
+                                    <a th:href="@{/admin/serviceCategories/create}" class="btn btn-primary btn-sm float-left">Create New</a>
+                                
 
                                 <form th:action="@{/admin/serviceCategories/deleteMulti}" method="post" id="deleteMultiForm">                                                                   
                                     <table class="table table-bordered table-striped">
