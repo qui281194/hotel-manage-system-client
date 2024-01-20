@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/dist/css/servicedv/create.css}"/>
+        <style>
+            body {
+                background-color: #f5f5f5;
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container-fluid {
+                padding: 20px;
+            }
+
+            .white-box {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h3.box-title {
+                color: #4CAF50;
+            }
+
+            .btn-primary {
+                background-color: #4CAF50;
+                border: none;
+            }
+
+            .btn-primary:hover {
+                background-color: #45a049;
+            }
+
+            .btn-danger {
+                background-color: #d9534f;
+                border: none;
+            }
+
+            .btn-danger:hover {
+                background-color: #c9302c;
+            }
+
+            table {
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            table, th, td {
+                border: 1px solid #ddd;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .pagination {
+                margin-top: 20px;
+            }
+
+            .pagination .page-item .page-link {
+                color: #4CAF50;
+            }
+
+            .pagination .page-item.active .page-link {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+            }
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                    <div class="page-wrapper" style="min-height: 250px;">
+                        <div class="container-fluid">
+                            <!-- ============================================================== -->
+                            <!-- Start Page Content -->
+                            <!-- ============================================================== -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="white-box">
+                                        <h3 class="box-title">Voucher List</h3>
+
+
+
+                                        <form th:action="@{/controller/voucher/create}" method="post" th:object="${newVoucher}">
+                                            <div class="form-container">
+                                                <!-- Left half of the form -->
+                                                <div class="form-half">
+                                                    <label for="code">Code:</label>
+                                                    <input type="text" id="code" name="code" th:field="*{code}" required>
+
+                                                        <select id="isActive" name="isActive" th:field="*{active}" required>
+                                                            <option value="true">Active</option>
+                                                            <option value="false">Inactive</option>
+                                                        </select>
+
+                                                        <label for="title">Title:</label>
+                                                        <input type="text" id="title" name="title" th:field="*{title}" required>
+
+                                                            <label for="cashAmountDiscount">Cash Amount Discount:</label>
+                                                            <input type="number" id="cashAmountDiscount" name="cashAmountDiscount" th:field="*{cashAmountDiscount}"
+                                                                   required >
+
+                                                                <!-- Add other left-half form elements here -->
+                                                                </div>
+
+                                                                <!-- Right half of the form -->
+                                                                <div class="form-half">
+                                                                    <label for="type">Type:</label>
+                                                                    <select id="type" name="type" th:field="*{type}" required>
+                                                                        <option value="percent">Percent</option>
+                                                                        <option value="amount">Amount</option>
+                                                                    </select>
+
+                                                                    <label for="percentageDiscount">Percentage Discount:</label>
+                                                                    <input type="number" id="percentageDiscount" name="percentageDiscount" th:field="*{percentageDiscount}" required
+                                                                           >
+
+                                                                        <label for="expirationDate">Expiration Date:</label>
+                                                                        <input type="date" id="expirationDate" name="expirationDate" th:field="*{expirationDate}" required
+                                                                               th:min="${T(java.time.LocalDate).now()}">
+
+                                                                            <!-- Add other right-half form elements here -->
+                                                                            </div>
+                                                                            </div>
+
+                                                                            <!-- Add other form elements here, if any -->
+
+                                                                            <button type="submit">Create</button>
+                                                                            </form>
+
+
+                                                                            <!-- Pagination -->
+                                                                            <nav aria-label="Page navigation">
+                                                                                <ul class="pagination">
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" href="#" aria-label="Previous">
+                                                                                            <span aria-hidden="true">&laquo;</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" href="#" aria-label="Next">
+                                                                                            <span aria-hidden="true">&raquo;</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                            </div>
+                                                                            </div>
+                                                                            </div>
+
+
+                                                                            <!-- ============================================================== -->
+                                                                            <!-- End PAge Content -->
+                                                                            <!-- ============================================================== -->
+                                                                            <!-- ============================================================== -->
+                                                                            <!-- Right sidebar -->
+                                                                            <!-- ============================================================== -->
+                                                                            <!-- .right-sidebar -->
+                                                                            <!-- ============================================================== -->
+                                                                            <!-- End Right sidebar -->
+                                                                            <!-- ============================================================== -->
+                                                                            </div>
+                                                                            </div>
+                                                                            </div>
+                                                                            </div>
+                                                                            </div>
+                                                                            <script th:src="@{/assets/plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+                                                                            <!-- Bootstrap tether Core JavaScript -->
+                                                                            <script th:src="@{/assets/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+                                                                            <script th:src="@{/assets/js/app-style-switcher.js}"></script>
+                                                                            
+                                                                            <script th:src="@{/assets/js/waves.js}"></script>
+                                                                            <!--Menu sidebar -->
+                                                                            <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+                                                                            <!--Custom JavaScript -->
+                                                                            <script th:src="@{/assets/js/custom.js}"></script>
+                                                                            <script>
+                                                                                function toggleSearchForm() {
+                                                                                    var searchForm = document.querySelector('.search-form');
+                                                                                    searchForm.classList.toggle('active');
+                                                                                }
+                                                                            </script>
+                                                                            
+                                                                            </body>
+
+                                                                            </html>
