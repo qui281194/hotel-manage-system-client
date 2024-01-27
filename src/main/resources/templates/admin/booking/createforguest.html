@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                    <div class="page-wrapper" style="min-height: 250px;">
+                        <div class="container-fluid">
+                            <div>
+                                <h2>Create Booking For Guest</h2>
+                            </div>
+                            <form action="#" th:action="@{http://localhost:8888/client/admin/bookingcontroller/createbookingforguest}" th:object="${newBookingDto}" method="POST">
+                                <input type="hidden" th:field="*{room_id}">
+                                Guest Phone Number: <input type="text" th:field="*{customer_info.phone}"><br>
+                                Booking From: <input type="date" th:field="*{booking_from}"><br>
+                                Booking To: <input type="date" th:field="*{booking_to}"><br>
+                                Number of Member: <input type="number" th:field="*{number_of_member}"><br>
+                                <input type="submit" value="Create Booking">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

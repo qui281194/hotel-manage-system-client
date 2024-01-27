@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+    <head>
+        <title>Admin Room Update</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+                    <div class="page-wrapper" style="min-height: 250px;">
+                        <div class="container-fluid">
+                            <div>
+                                <h3>Update <b th:text="${updateRoomDto.room_no}"></b> Information</h3>
+                            </div>
+                            <form action="#" th:action="@{http://localhost:8888/client/admin/roomcontroller/update}" th:object="${updateRoomDto}" method="POST">
+                                <input type="hidden" th:field="*{id}">
+                                <input type="hidden" th:field="*{is_active}">
+                                Room No: <input type="text" th:field="*{room_no}" placeholder="Enter Room No..."><br>
+                                <p style="color: red" th:errors="*{room_no}" th:if="${#fields.hasErrors('room_no')}"></p>
+                                <br>
+
+                                Room Price: <input type="number" th:field="*{room_price}" placeholder="Enter Room Price..."><br>
+                                <p style="color: red" th:errors="*{room_price}" th:if="${#fields.hasErrors('room_price')}"></p>
+                                <br>
+
+                                Room Image: <input type="text" th:field="*{room_image}" placeholder="Enter Room Image..."><br>
+                                <p style="color: red" th:errors="*{room_image}" th:if="${#fields.hasErrors('room_image')}"></p>
+                                <br>
+
+                                Room Capacity: <input type="number" th:field="*{room_capacity}" placeholder="Enter Room Capacity..."><br>
+                                <p style="color: red" th:errors="*{room_capacity}" th:if="${#fields.hasErrors('room_capacity')}"></p>
+                                <br>
+
+                                Room Description: <textarea th:field="*{room_description}" placeholder="Enter Room Description..."></textarea><br>
+                                <p style="color: red" th:errors="*{room_description}" th:if="${#fields.hasErrors('room_description')}"></p>
+                                <br>
+
+                                <select th:field="*{room_type_id}">
+                                    <option selected disabled value="0">---Select Room Type---</option>
+                                    <option th:each="item : ${allRoomTypeList}" th:value="${item.id}" th:text="${item.room_type_name}"></option>
+                                </select><br>
+                                <p style="color: red" th:errors="*{room_type_id}" th:if="${#fields.hasErrors('room_type_id')}"></p>
+                                <br>
+                                
+                                <select th:field="*{booking_status_id}">
+                                    <option selected disabled value="0">---Select Booking Status---</option>
+                                    <option th:each="item : ${allBookingStatusList}" th:value="${item.id}" th:text="${item.booking_status_name}"></option>
+                                </select><br>
+                                <p style="color: red" th:errors="*{booking_status_id}" th:if="${#fields.hasErrors('booking_status_id')}"></p>
+                                <br>
+
+                                <input type="submit" value="Update">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -10,18 +10,13 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author PC
+ * @author TuanNguyen
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-    private Integer id;
-    private String username;
-    private String email;
-    private String password;
-    private String address;
-    private String phone;
-    private Integer role_id;
-    private RoleDto roleInfo;
+public class BookingStatusDto {
+    private int id;
+    private String booking_status_name;
 }
