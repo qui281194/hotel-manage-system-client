@@ -56,14 +56,14 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="user : ${users}" th:if="${user.role_id == 1 or user.role_id == 2}">
-                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.username}"></td>
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.address}"></td>
                                                 <td th:text="${user.phone}"></td>
                                                 <td>
                                                     <a th:href="@{/admin/user/{id}/edit(id=${user.id})}" class="btn btn-primary">Edit</a>
 
-                                                    <a th:href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger">Delete</a>
+                                                    <a th:href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger" onclick="confirmDelete(${user.id})">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -115,7 +115,7 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="user : ${users}" th:if="${user.role_id == 3}">
-                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.username}"></td>
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.address}"></td>
                                                 <td th:text="${user.phone}"></td>
@@ -161,12 +161,6 @@
         
         <script>
 
-            function confirmDelete(userId) {
-                if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
-                    window.location.href = '/admin/user/' + userId + '/delete';
-                }
-            }
-
             // Xử lý khi tài liệu đã tải xong
             document.addEventListener("DOMContentLoaded", function() {
                 // Lấy danh sách tất cả các nút "Xóa"
@@ -185,29 +179,6 @@
                     });
                 });
             });
-
-            function confirmDeleteWithUrl(deleteUrl) {
-                if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
-                    window.location.href = deleteUrl;
-                }
-            }
-//            $(function () {
-//                $("#jsGrid1").jsGrid({
-//                    height: "100%",
-//                    width: "100%",
-//                    sorting: true,
-//                    paging: true,
-//                    data: db.clients,
-//                    fields: [
-//                        {name: "Name", type: "text", width: 150},
-//                        {name: "Age", type: "number", width: 50},
-//                        {name: "Address", type: "text", width: 200},
-//                        {name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name"},
-//                        {name: "Married", type: "checkbox", title: "Is Married"}
-//                    ]
-//                });
-//            });
-
 
         </script>
         <!-- jQuery -->

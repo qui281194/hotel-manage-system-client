@@ -6,13 +6,14 @@ package fpt.aptech.hotelclient.models;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  *
  * @author PC
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "tbl_users")
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
     @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id"),
@@ -29,14 +30,21 @@ public class Users implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
+    @NotEmpty(message = "Name is required")
     @Column(name = "name")
     private String name;
+    
+    @NotEmpty(message = "Email is required")
     @Column(name = "email")
     private String email;
+    @NotEmpty(message = "Passowrd is required")
     @Column(name = "password")
     private String password;
+//    @NotEmpty(message = "Name is required")
     @Column(name = "address")
     private String address;
+    @NotEmpty(message = "Phone is required")
     @Column(name = "phone")
     private String phone;
     @JoinColumn(name = "role_id", referencedColumnName = "id")

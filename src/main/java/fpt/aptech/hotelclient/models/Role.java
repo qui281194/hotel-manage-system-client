@@ -13,7 +13,7 @@ import jakarta.persistence.*;
  * @author PC
  */
 @Entity
-@Table(name = "Role")
+@Table(name = "tbl_role")
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
     @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id"),

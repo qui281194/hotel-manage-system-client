@@ -38,28 +38,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                                 <div class="card-body">
                                     <form th:action="@{/admin/create-user}" th:object="${newUser}" method="post">
                                         <div class="form-group">
-                                            <label for="email">Name</label><span style="color:red;"> *</span>
-                                            <input type="text" id="email" th:field="*{name}" required class="form-control"/>
+                                            <label for="username">Name</label><span style="color:red;"> *</span>
+                                            <input type="text" id="username" th:field="*{username}" required placeholder="Please enter name..." class="form-control"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="email">Email</label><span style="color:red;"> *</span>
-                                            <input type="email" id="email" th:field="*{email}" class="form-control" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+                                            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Please enter Email..."  required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="password">Password</label><span style="color:red;"> *</span>
-                                            <input type="password" id="password" th:field="*{password}" minlength="8" required class="form-control"/>
+                                            <input type="password" id="password" th:field="*{password}" minlength="8" placeholder="Please enter Password..." required class="form-control"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="address">Address</label><span style="color:red;"> *</span>
-                                            <input type="text" id="address" th:field="*{address}" required class="form-control"/>
+                                            <input type="text" id="address" th:field="*{address}" placeholder="Please enter Address..." required class="form-control"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="phone">Phone</label><span style="color:red;"> *</span>
-                                            <input type="text" id="phone" th:field="*{phone}" required class="form-control"/>
+                                            <input type="text" id="phone" th:field="*{phone}" placeholder="Please enter Phone..." required class="form-control"/>
                                         </div>
 
                                         <div class="form-group">

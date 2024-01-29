@@ -19,12 +19,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
         <div class="register-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+                    <a href="../../index2.html" class="h1"><b>Hotel</b> BAT ON</a>
                 </div>
                 <div class="card-body">
                     <form th:action="@{/users/register-customer}" th:object="${newUser}" method="post">
                         <div class="input-group mb-3">
-                            <input type="text" id="name" th:field="*{name}" placeholder="Name" class="form-control" required/>
+                            <input type="text" id="username" th:field="*{username}" placeholder="Name" class="form-control" required/>
                             <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span ></span> 

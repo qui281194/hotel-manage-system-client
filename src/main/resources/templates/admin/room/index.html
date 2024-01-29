@@ -10,6 +10,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>Admin Room Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- jsGrid -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid-theme.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
     </head>
     <body>
 
@@ -24,48 +33,63 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
 
                             <div>
-                                <a th:href="@{http://localhost:8888/client/admin/roomcontroller/gotocreate}">Create new Room</a>
+                                <a th:href="@{http://localhost:8888/client/admin/roomcontroller/gotocreate}" class="btn btn-primary">Create new Room</a>
                             </div>
-
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th>Room No</th>
-                                        <th>Room Price</th>
-                                        <th>Room Image</th>
-                                        <th>Capacity</th>
-                                        <th>Description</th>
-                                        <th>Room Type</th>
-                                        <th>Booking Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="item : ${allRoomList}">
-                                        <td th:text="${item.room_no}"></td>
-                                        <td th:text="${item.room_price}"></td>
-                                        <td th:text="${item.room_image}"></td>
-                                        <td th:text="${item.room_capacity}"></td>
-                                        <td th:text="${item.room_description}"></td>
-                                        <td th:text="${item.booking_status_info.booking_status_name}"></td>
-                                        <td th:text="${item.room_type_info.room_type_name}"></td>
-                                        <td>
-                                            <a th:href="@{http://localhost:8888/client/admin/roomcontroller/gotoupdate/{roomId}(roomId=${item.id})}">Update</a> | 
-                                            <span th:if="${item.is_active == true}">
-                                                <a th:href="@{http://localhost:8888/client/admin/roomcontroller/disableroom/{roomId}(roomId=${item.id})}">Disable</a>
-                                            </span>
-                                            <span th:unless="${item.is_active == true}">
-                                                <a th:href="@{http://localhost:8888/client/admin/roomcontroller/activeroom/{roomId}(roomId=${item.id})}">Active</a>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="card-body">
+                                <div id="jsGrid1" class="jsgrid">
+                                    <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                        <table  class="jsgrid-table">
+                                            <thead>
+                                                <tr  class="jsgrid-header-row">
+                                                    <th class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Price</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Image</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Capacity</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Description</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Booking Status</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Type</th>
+                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="item : ${allRoomList}">
+                                                    <td th:text="${item.room_no}"></td>
+                                                    <td th:text="${item.room_price}"></td>
+                                                    <td th:text="${item.room_image}"></td>
+                                                    <td th:text="${item.room_capacity}"></td>
+                                                    <td th:text="${item.room_description}"></td>
+                                                    <td th:text="${item.booking_status_info.booking_status_name}"></td>
+                                                    <td th:text="${item.room_type_info.room_type_name}"></td>
+                                                    <td>
+                                                        <a th:href="@{http://localhost:8888/client/admin/roomcontroller/gotoupdate/{roomId}(roomId=${item.id})}" class="btn btn-primary">Update</a> | 
+                                                        <span th:if="${item.is_active == true}">
+                                                            <a th:href="@{http://localhost:8888/client/admin/roomcontroller/disableroom/{roomId}(roomId=${item.id})}" class="btn btn-danger">Disable</a>
+                                                        </span>
+                                                        <span th:unless="${item.is_active == true}">
+                                                            <a th:href="@{http://localhost:8888/client/admin/roomcontroller/activeroom/{roomId}(roomId=${item.id})}" class="btn btn-primary">Active</a>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+        <!-- Bootstrap 4 -->
+        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <!-- jsGrid -->
+        <script th:src="@{/admin/plugins/jsgrid/demos/db.js}"></script>
+        <script th:src="@{/admin/plugins/jsgrid/jsgrid.min.js}"></script>
+        <!-- AdminLTE App -->
+        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script th:src="@{/admin/dist/js/demo.js}"></script>
     </body>
 </html>
 

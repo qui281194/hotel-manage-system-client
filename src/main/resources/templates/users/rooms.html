@@ -57,7 +57,7 @@
             <!-- Rooms Section Begin -->
             <section class="rooms spad">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" th:each="item : ${allRoomList}">
                         <div class="col-lg-6 p-0 order-lg-2 order-md-2 col-md-6">
                             <div class="room__pic__slider owl-carousel">
                                 <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
@@ -67,85 +67,24 @@
                             </div>
                         </div>
                         <div class="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6">
-                            <div class="room__text">
-                                <h3>Premium King Room</h3>
-                                <h2><sup>$</sup>99<span>/day</span></h2>
+                            <div class="room__text" >
+
+                                <h3 th:text="${item.room_type_info.room_type_name}"></h3>
+                                <h5><sup style="font-size: 20px">$  </sup><span style="color: goldenrod" th:text="${item.room_price}"></span><i>  /day</i></h5>
+<!--                                <h4><span>Descriptions :</span>&emsp;<sup th:text="${item.room_description}"></sup></h4>
+                                <h4><sup>Stat :</sup>&emsp;<span th:text="${item.room_type_info.room_type_name}"></span></h4>-->
+                                <br/>
                                 <ul>
-                                    <li><span>Size:</span>30 ft</li>
-                                    <li><span>Capacity:</span>Max persion 3</li>
-                                    <li><span>Bed:</span>King Beds</li>
+                                    <li><span>Descriptions:</span><i th:text="${item.room_description}"></i></li>
+                                    <li><span >Status:</span><i th:text="${item.booking_status_info.booking_status_name}"></i></li>
+                                    <li><span>Capacity:</span><i th:text="${item.room_capacity}"></i></li>
                                     <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
-                                    <li><span>View:</span>Sea View</li>
                                 </ul>
-                                <a href="#">View Details</a>
+                                <a th:href="@{/user/room/details/{roomId}}">View Details</a>
+
                             </div>
                         </div>
-                        <div class="col-lg-6 p-0 order-lg-3 order-md-3 col-md-6">
-                            <div class="room__pic__slider owl-carousel">
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 p-0 order-lg-4 order-md-4 col-md-6">
-                            <div class="room__text right__text">
-                                <h3>Deluxe Room</h3>
-                                <h2><sup>$</sup>86<span>/day</span></h2>
-                                <ul>
-                                    <li><span>Size:</span>30 ft</li>
-                                    <li><span>Capacity:</span>Max persion 3</li>
-                                    <li><span>Bed:</span>King Beds</li>
-                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
-                                    <li><span>View:</span>Sea View</li>
-                                </ul>
-                                <a href="#">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 p-0 order-lg-6 order-md-6 col-md-6">
-                            <div class="room__pic__slider owl-carousel">
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 p-0 order-lg-5 order-md-5 col-md-6">
-                            <div class="room__text">
-                                <h3>Double Room</h3>
-                                <h2><sup>$</sup>71<span>/day</span></h2>
-                                <ul>
-                                    <li><span>Size:</span>30 ft</li>
-                                    <li><span>Capacity:</span>Max persion 3</li>
-                                    <li><span>Bed:</span>King Beds</li>
-                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
-                                    <li><span>View:</span>Sea View</li>
-                                </ul>
-                                <a href="#">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 p-0 order-lg-7 order-md-7 col-md-6">
-                            <div class="room__pic__slider owl-carousel">
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 p-0 order-lg-8 order-md-8 col-md-6">
-                            <div class="room__text right__text">
-                                <h3>Luxury Room</h3>
-                                <h2><sup>$</sup>79<span>/day</span></h2>
-                                <ul>
-                                    <li><span>Size:</span>30 ft</li>
-                                    <li><span>Capacity:</span>Max persion 3</li>
-                                    <li><span>Bed:</span>King Beds</li>
-                                    <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
-                                    <li><span>View:</span>Sea View</li>
-                                </ul>
-                                <a href="#">View Details</a>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-lg-12">

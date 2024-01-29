@@ -4,9 +4,13 @@
  */
 package fpt.aptech.hotelclient.controller.user;
 
+import fpt.aptech.hotelclient.dto.RoomDto;
+import java.util.List;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -15,16 +19,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user/room")
 public class RoomController {
-    
-    @RequestMapping("/all")
-    public String page() {
-        
+
+    String room_api_url = "http://localhost:9999/api/roomcontroller";
+    RestTemplate _restTemplate = new RestTemplate();
+
+    @GetMapping("/all")
+    public String page(Model model) {
+        List<RoomDto> allRoomList = _restTemplate.getForObject(room_api_url + "/allroomsortedbyactive", List.class);
+        model.addAttribute("allRoomList", allRoomList);
         return "/users/rooms";
     }
-    @RequestMapping("/details")
-    public String details() {
-        
+
+    @RequestMapping("/details/{roomId}")
+    public String details(@PathVariable("roomId") int roomId, Model model) {
+        RoomDto room = _restTemplate.getForObject(room_api_url + "/find/" + roomId, RoomDto.class);
+        model.addAttribute("room", room);
         return "/users/room-details";
     }
-    
+
 }
