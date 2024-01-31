@@ -36,6 +36,14 @@ public class ServiceCategoryController {
         model.addAttribute("categories", categories);
         return "admin/servicedv/serviceCategoryList"; // Adjust the view name as needed
     }
+    
+//    @GetMapping("/allByRoom")
+//    public String getAllServiceByRoom(Model model) {
+//        ResponseEntity<ServiceCategoryDto[]> response = restTemplate.getForEntity(apiUrl + "all", ServiceCategoryDto[].class);
+//        List<ServiceCategoryDto> categories = Arrays.asList(response.getBody());
+//        model.addAttribute("categories", categories);
+//        return "user/room-details"; // Adjust the view name as needed
+//    }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {

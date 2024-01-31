@@ -159,28 +159,6 @@
             </div>
         </div>
         
-        <script>
-
-            // Xử lý khi tài liệu đã tải xong
-            document.addEventListener("DOMContentLoaded", function() {
-                // Lấy danh sách tất cả các nút "Xóa"
-                var deleteButtons = document.querySelectorAll(".btn-danger");
-
-                // Gắn sự kiện onclick cho từng nút "Xóa"
-                deleteButtons.forEach(function(button) {
-                    button.addEventListener("click", function(event) {
-                        event.preventDefault();
-
-                        // Lấy giá trị của thuộc tính "href" của nút "Xóa"
-                        var deleteUrl = button.getAttribute("href");
-
-                        // Gọi hàm xác nhận xóa và truyền URL xóa tới nó
-                        confirmDeleteWithUrl(deleteUrl);
-                    });
-                });
-            });
-
-        </script>
         <!-- jQuery -->
         <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
         <!-- Bootstrap 4 -->

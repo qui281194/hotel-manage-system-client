@@ -80,7 +80,7 @@
                                     <li><span>Capacity:</span><i th:text="${item.room_capacity}"></i></li>
                                     <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
                                 </ul>
-                                <a th:href="@{/user/room/details/{roomId}}">View Details</a>
+                                <a th:href="@{/user/room/{roomId}/details(roomId=${item.id})}">View Details</a>
 
                             </div>
                         </div>

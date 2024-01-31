@@ -40,7 +40,7 @@ public class DashboardController {
 
     @GetMapping("/admin/user/{id}")
     public String getUserById(@PathVariable("id") Integer id, Model model) {
-        UserDto userDto = rest.getForObject(apiUrl + id, UserDto.class);
+        UserDto userDto = rest.getForObject(apiUrl + "{id}"+ id, UserDto.class);
         model.addAttribute("user", userDto);
         return "profile"; // Trả về tên template để hiển thị thông tin người dùng
     }

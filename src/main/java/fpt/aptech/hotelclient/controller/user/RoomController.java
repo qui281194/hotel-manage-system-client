@@ -30,7 +30,7 @@ public class RoomController {
         return "/users/rooms";
     }
 
-    @RequestMapping("/details/{roomId}")
+    @GetMapping("/{roomId}/details")
     public String details(@PathVariable("roomId") int roomId, Model model) {
         RoomDto room = _restTemplate.getForObject(room_api_url + "/find/" + roomId, RoomDto.class);
         model.addAttribute("room", room);

@@ -80,8 +80,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                         <div class="image">
                             <img th:src="@{/admin/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
                         </div>
-                        <div class="info">
-                            <a href="#" class="d-block"></a>
+                        <div class="info" th:each="user: ${users}" th:if="@{user.id == ">
+                            <a th:href="@{/admin/user/{id}}" class="d-block" th:text="${user.username}"></a>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <ul class="nav nav-pills nav-sidebar flex-column"  data-widget="treeview" role="menu" data-accordion="false">
 
                             
 
@@ -155,12 +155,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                                     <span class="hide-menu">Booking Management</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a th:href="@{/admin/user/{id}}" class="nav-link">
-                                    <i class="fa fa-cogs" aria-hidden="true"></i>
-                                    <span class="hide-menu">Profile</span>
-                                </a>
-                            </li>
+                            <div>
+                            </div>
+                            
                             <li class="nav-item">
                                 <a th:href="@{/login}" class="nav-link">
                                     <i class="fa fa-cogs" aria-hidden="true"></i>
