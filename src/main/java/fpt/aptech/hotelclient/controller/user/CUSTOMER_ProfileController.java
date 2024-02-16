@@ -4,32 +4,35 @@
  */
 package fpt.aptech.hotelclient.controller.user;
 
+import fpt.aptech.hotelclient.dto.BookingDto;
+import fpt.aptech.hotelclient.dto.UserDto;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 /**
  *
- * @author ASUS
+ * @author TuanNguyen
  */
 @Controller
-@RequestMapping("/client/user/homecontroller")
-public class HomeController {
-    String room_api_url = "http://localhost:9999/api/roomcontroller";
+@RequestMapping("/client/customer/profilecontroller")
+public class CUSTOMER_ProfileController {
     String booking_api_url = "http://localhost:9999/api/bookingcontroller";
     String user_api_url = "http://localhost:9999/api/users";
     
     RestTemplate _restTemplate = new RestTemplate();
     
-    @GetMapping("/homepage")
+    @RequestMapping("/all")
     public String page(Model model , @RequestParam("userId") int userId) {
-        
-        return "/users/home";
+        UserDto userProfile = _restTemplate.getForObject(user_api_url+"/findbyid/"+userId, UserDto.class);
+        List<BookingDto> allBookingByCustomer = _restTemplate.getForObject(booking_api_url+"/allbookingbycustomer/"+userId, List.class);
+        model.addAttribute("userId", userId);
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("bookingList", allBookingByCustomer);
+        return "users/profile";
     }
-    
     
 }

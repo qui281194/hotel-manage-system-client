@@ -30,7 +30,6 @@ public class UsersController {
     @PostMapping("/login")
     public String login(@ModelAttribute("loginDto") LoginDto loginDto, Model model) {
         try {
-
             // Gọi API login
             ResponseEntity<UserDto> response = rest.postForEntity(apiUrl + "login", loginDto, UserDto.class);
 
@@ -40,7 +39,7 @@ public class UsersController {
                 if (loggedInUser.getRole_id() == 1 || loggedInUser.getRole_id() == 2) {
                     return "admin/dashboard";
                 } else if (loggedInUser.getRole_id() == 3) {
-                    return "users/home";
+                    return "redirect:http://localhost:8888/client/customer/homecontroller/all?userId="+loggedInUser.getId();
                 }
             }
         } catch (Exception ex) {

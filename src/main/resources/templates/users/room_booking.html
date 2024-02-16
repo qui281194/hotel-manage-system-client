@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="zxx" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/users/layout">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Hiroto Template">
+        <meta name="keywords" content="Hiroto, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hotel Management - Booking Room Form</title>
+
+        <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/nice-select.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/jquery-ui.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">
+            
+        <style>
+            form label[for="sender"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#sender {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#sender:focus {
+                border-color: #007BFF;
+            }
+             form label[for="subject"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#subject {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#subject:focus {
+                border-color: #007BFF;
+            }
+             form label[for="content"] {
+                display: block;
+                margin-top: 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #007BFF;
+            }
+
+            /* Style the "Name" input */
+            form input#content {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: border-color 0.3s;
+            }
+
+            /* Add a transition effect on input focus for a smoother interaction */
+            form input#content:focus {
+                border-color: #007BFF;
+            }
+            
+        </style>    
+    </head>
+    <body>
+        
+        <div layout:fragment="content">
+            
+            <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="breadcrumb__text">
+                                <h1>Room Booking Form</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <p style="color: red" th:if="${bookingErrMessage != null}" th:text="${bookingErrMessage}"></p>
+            </div>
+        
+<!--            <form action="#" th:action="@{http://localhost:8888/client/customer/roomcontroller/confirmbookingdetail?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="post">
+                Booking From: <input type="date" th:field="*{booking_from}"><br>
+                Booking To: <input type="date" th:field="*{booking_to}"><br>
+                Number of Member: <input type="number" th:field="*{number_of_member}"><br>
+                Customer Id: <input type="text" th:field="*{customer_id}"><br>
+                Room Id: <input type="text" th:field="*{room_id}"><br>
+                <input type="submit" value="Go To Booking Detail">
+            </form>-->
+            
+            <div class="col-lg-6 offset-lg-1 col-md-6 col-sm-7">
+                <div class="contact__form">
+                    <form th:action="@{http://localhost:8888/client/customer/roomcontroller/confirmbookingdetail?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="post">
+                        <label style="color: goldenrod" for="sender">Booking From</label>
+                        <input type="date" id="sender" name="sender" th:field="*{booking_from}"><br/>
+                                        
+                        <label style="color: goldenrod" for="sender">Booking To</label>
+                        <input type="date" id="sender" name="sender" th:field="*{booking_to}"><br/>
+
+                        <label style="color: goldenrod" for="subject">Number of Member</label>
+                        <input type="number" id="subject" name="subject" th:field="*{number_of_member}" placeholder="Enter Number of Member..."><br/>
+                                    
+                        <input type="hidden" th:field="*{customer_id}"><br>
+                        <input type="hidden" th:field="*{room_id}"><br>
+
+                        <button type="submit">Go To Booking Detail</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <script th:src="@{/users/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/users/js/bootstrap.min.js}"></script>
+        <script th:src="@{/users/js/jquery.nice-select.min.js}"></script>
+        <script th:src="@{/users/js/jquery-ui.min.js}"></script>
+        <script th:src="@{/users/js/jquery.slicknav.js}"></script>
+        <script th:src="@{/users/js/owl.carousel.min.js}"></script>
+        <script th:src="@{/users/js/main.js}"></script>
+    </body>
+</html>

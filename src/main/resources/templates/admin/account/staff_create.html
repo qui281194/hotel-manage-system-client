@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="content-wrapper">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Create new Staff</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form th:action="@{http://localhost:8888/client/admin/staffcontroller/create}" th:object="${newStaff}" method="POST">
+                                        <div class="form-group">
+                                            <label for="username">Username</label><span style="color:red;"> *</span>
+                                            <input type="text" id="username" th:field="*{username}" placeholder="Please enter name..." class="form-control"/>
+                                            <p style="color: red" th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label><span style="color:red;"> *</span>
+                                            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Please enter Email..." pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+                                            <p style="color: red" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
+                                            <p style="color: red" th:text="${emailErrMessage}" th:if="${emailErrMessage != null}"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password">Password</label><span style="color:red;"> *</span>
+                                            <input type="password" id="password" th:field="*{password}" minlength="8" placeholder="Please enter Password..." class="form-control"/>
+                                            <p style="color: red" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address">Address</label><span style="color:red;"> *</span>
+                                            <input type="text" id="address" th:field="*{address}" placeholder="Please enter Address..." class="form-control"/>
+                                            <p style="color: red" th:errors="*{address}" th:if="${#fields.hasErrors('address')}"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label><span style="color:red;"> *</span>
+                                            <input type="text" id="phone" th:field="*{phone}" placeholder="Please enter Phone..." class="form-control"/>
+                                            <p style="color: red" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"></p>
+                                        </div>
+                                        
+                                        <div>
+                                            <input type="hidden" th:field="*{role_id}">
+                                        </div>
+
+                                        <div class="row">
+                                            <button type="submit" class="btn btn-primary btn-block">Create new Staff</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        
+        <!-- jQuery -->
+        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+        <!-- Bootstrap 4 -->
+        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <!-- AdminLTE App -->
+        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script th:src="@{/admin/dist/js/demo.js}"></script>
+    </body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" xxmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html lang="zxx" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/users/layout">
 
@@ -9,7 +9,7 @@
         <meta name="keywords" content="Hiroto, unica, creative, html">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Hotel|Lat|Loi - Rooms</title>
+        <title>Hotel Management - All Room</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
@@ -37,22 +37,115 @@
 
 
             <!-- Breadcrumb Begin -->
-            <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <div class="breadcrumb__text">
-                                <h1>Our Room</h1>
-                                <div class="breadcrumb__links">
-                                    <a th:href="@{/user/home/all}">Home</a>
-                                    <span>Rooms</span>
+                        <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <div class="breadcrumb__text">
+                                            <h1>Our Room</h1>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+            <!-- Breadcrumb End -->
+
+            <form action="#" th:action="@{http://localhost:8888/client/customer/roomcontroller/searchRoom?userId={userId}(userId=${userId})}" th:object="${searchDto}" class="filter__form" method="POST">
+                <div class="filter__form__item">
+                    <p>Check In</p>
+                    <div class="filter__form__datepicker">
+                        <input type="date" class="datepicker_pop check__in hasDatepicker" th:field="*{booking_from}">
                     </div>
                 </div>
-            </div>
-            <!-- Breadcrumb End -->
+                <div class="filter__form__item">
+                    <p>Check Out</p>
+                    <div class="filter__form__datepicker">
+                        <input type="date" class="datepicker_pop check__out hasDatepicker" th:field="*{booking_to}">
+                    </div>
+                </div>
+                <div class="filter__form__item filter__form__item--search">
+                    <p>From Price</p>
+                    <div class="filter__form__input">
+                        <input type="number" th:field="*{from_price}" placeholder="From Price...">
+                        <span class="icon_search"></span>
+                    </div>
+                </div>
+                <div class="filter__form__item filter__form__item--search">
+                    <p>To Price</p>
+                    <div class="filter__form__input">
+                        <input type="number" th:field="*{to_price}" placeholder="To Price...">
+                        <span class="icon_search"></span>
+                    </div>
+                </div>
+                <div class="filter__form__item filter__form__item--select">
+                    <p>Room Type</p>
+                    <div class="filter__form__select">
+                        <span class="icon_group"></span>
+                        <select th:field="*{room_type_id}" style="display: none;">
+                            <option selected value="0">--Room Type--</option>
+                            <option value="1">Single</option>
+                            <option value="2">Double</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+
+<!--            <section class="hero spad set-bg" th:data-setbg="@{/users/img/hero.jpg}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hero__text">
+                                <h2>Our Rooms</h2>
+                                <h5>Choose your room to booking</h5>
+                            </div>
+
+
+                            <form action="#" th:action="@{http://localhost:8888/client/customer/roomcontroller/searchRoom?userId={userId}(userId=${userId})}" th:object="${searchDto}" class="filter__form" method="POST">
+                                <div class="filter__form__item">
+                                    <p>Check In</p>
+                                    <div class="filter__form__datepicker">
+                                        <input type="date" class="datepicker_pop check__in hasDatepicker" th:field="*{booking_from}">
+                                    </div>
+                                </div>
+                                <div class="filter__form__item">
+                                    <p>Check Out</p>
+                                    <div class="filter__form__datepicker">
+                                        <input type="date" class="datepicker_pop check__out hasDatepicker" th:field="*{booking_to}">
+                                    </div>
+                                </div>
+                                <div class="filter__form__item filter__form__item--search">
+                                    <p>From Price</p>
+                                    <div class="filter__form__input">
+                                        <input type="number" th:field="*{from_price}" placeholder="From Price...">
+                                        <span class="icon_search"></span>
+                                    </div>
+                                </div>
+                                <div class="filter__form__item filter__form__item--search">
+                                    <p>To Price</p>
+                                    <div class="filter__form__input">
+                                        <input type="number" th:field="*{to_price}" placeholder="To Price...">
+                                        <span class="icon_search"></span>
+                                    </div>
+                                </div>
+                                <div class="filter__form__item filter__form__item--select">
+                                    <p>Room Type</p>
+                                    <div class="filter__form__select">
+                                        <span class="icon_group"></span>
+                                        <select th:field="*{room_type_id}" style="display: none;">
+                                            <option selected value="0">---Select Room Type---</option>
+                                            <option value="1">Single</option>
+                                            <option value="2">Double</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit">Search</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </section>-->
 
             <!-- Rooms Section Begin -->
             <section class="rooms spad">
@@ -60,32 +153,32 @@
                     <div class="row" th:each="item : ${allRoomList}">
                         <div class="col-lg-6 p-0 order-lg-2 order-md-2 col-md-6">
                             <div class="room__pic__slider owl-carousel">
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
-                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>
+                                <!--                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-1.jpg}"></div>
+                                                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-2.jpg}"></div>
+                                                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-3.jpg}"></div>
+                                                                <div class="room__pic__item set-bg" th:data-setbg="@{/users/img/rooms/room-4.jpg}"></div>-->
+                                <img th:src="${item.room_image}" alt="alt"/>
                             </div>
                         </div>
                         <div class="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6">
                             <div class="room__text" >
-
-                                <h3 th:text="${item.room_type_info.room_type_name}"></h3>
-                                <h5><sup style="font-size: 20px">$  </sup><span style="color: goldenrod" th:text="${item.room_price}"></span><i>  /day</i></h5>
-<!--                                <h4><span>Descriptions :</span>&emsp;<sup th:text="${item.room_description}"></sup></h4>
-                                <h4><sup>Stat :</sup>&emsp;<span th:text="${item.room_type_info.room_type_name}"></span></h4>-->
+                                <h3 th:text="${item.room_no}"></h3>
+                                <h2><sup>$</sup><span style="color: goldenrod; font-size: 30px" th:text="${item.room_price}"></span><span>/day</span></h2>
+                                <!--                                <h4><span>Descriptions :</span>&emsp;<sup th:text="${item.room_description}"></sup></h4>
+                                                                <h4><sup>Stat :</sup>&emsp;<span th:text="${item.room_type_info.room_type_name}"></span></h4>-->
                                 <br/>
                                 <ul>
+                                    <li><span>Room Type:</span><i th:text="${item.room_type_info.room_type_name}"></i></li>
                                     <li><span>Descriptions:</span><i th:text="${item.room_description}"></i></li>
-                                    <li><span >Status:</span><i th:text="${item.booking_status_info.booking_status_name}"></i></li>
+                                    <!--                                    <li><span >Status:</span><i th:text="${item.booking_status_info.booking_status_name}"></i></li>-->
                                     <li><span>Capacity:</span><i th:text="${item.room_capacity}"></i></li>
                                     <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
                                 </ul>
-                                <a th:href="@{/user/room/{roomId}/details(roomId=${item.id})}">View Details</a>
-
+                                <a th:href="@{/client/customer/roomcontroller/details?userId={userId}&roomId={roomId}(userId=${userId},roomId=${item.id})}">View Details</a>
                             </div>
                         </div>
-                        
                     </div>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pagination__number">

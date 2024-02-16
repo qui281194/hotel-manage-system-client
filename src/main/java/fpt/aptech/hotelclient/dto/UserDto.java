@@ -4,6 +4,8 @@
  */
 package fpt.aptech.hotelclient.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +19,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
     private Integer id;
+    
+    @NotBlank(message = "Username must be fill!!!")
     private String username;
+    
+    @NotBlank(message = "Email must be fill!!!")
+    @Email(message = "Email must be right format!!!")
     private String email;
+    
+    @NotBlank(message = "Password must be fill!!!")
     private String password;
+    
+    @NotBlank(message = "Address must be fill!!!")
     private String address;
+    
+    @NotBlank(message = "Phone number must be fill!!!")
     private String phone;
     private Integer role_id;
     private RoleDto roleInfo;

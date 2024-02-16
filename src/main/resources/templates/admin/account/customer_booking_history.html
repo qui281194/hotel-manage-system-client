@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/admin/layout">
     <head>
-        <title>Admin Booking Management</title>
+        <title>Admin Customer Booking History</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Google Font: Source Sans Pro -->
@@ -28,12 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="page-wrapper" style="min-height: 250px;">
                         <div class="container-fluid">
                             <div>
-                                <h2>Admin Booking Management</h2>
+                                <h2>Admin Customer Booking History</h2>
                             </div>
-                            <div>
-                                <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/gotoroomtobooking}" class="btn btn-primary">Create booking for Guest</a>
-                            </div>
-
+                            
                             <div class="card-body">
                                 <div id="jsGrid1" class="jsgrid">
                                     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
@@ -92,15 +89,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </div>
-        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
-        <!-- Bootstrap 4 -->
-        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-        <!-- jsGrid -->
-        <script th:src="@{/admin/plugins/jsgrid/demos/db.js}"></script>
-        <script th:src="@{/admin/plugins/jsgrid/jsgrid.min.js}"></script>
-        <!-- AdminLTE App -->
-        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script th:src="@{/admin/dist/js/demo.js}"></script>
     </body>
 </html>

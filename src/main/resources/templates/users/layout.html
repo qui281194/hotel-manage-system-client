@@ -27,26 +27,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                     <div class="row">
                         <div class="col-lg-7">
                             <ul class="header__top__widget">
-                                <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                                <li><span class="icon_phone"></span> (123) 456-78-910</li>
+                                <li><span class="icon_pin_alt"></span>590 Cach Mang Thang Tam P.11 Q.3 Tp.HCM</li>
+                                <li><span class="icon_phone"></span>0931-313-329</li>
                             </ul>
                         </div>
                         <div class="col-lg-5">
                             <div class="header__top__right">
                                 <div class="header__top__auth">
                                     <ul>
-                                        <li><a th:href="@{/login}">Login</a></li>
-                                        <li><a th:href="@{/users/register-customer}">Register</a></li>
+                                        <li th:if="${userId == null}"><a th:href="@{/login}">Login</a></li>
+                                        <li th:if="${userId == null}"><a th:href="@{/users/register-customer}">Register</a></li>
+                                        <li th:if="${userId != null}"><a th:href="@{/client/customer/profilecontroller/all?userId={id}(id=${userId})}">Your Profile</a></li>
+                                        <li th:if="${userId != null}"><a th:href="@{/login}">Logout</a></li>
                                     </ul>
-                                </div>
-                                <div class="header__top__language">
-                                    <img th:src="@{/users/img/lan.png}" alt="">
-                                        <span>English</span>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul>
-                                            <li>English</li>
-                                            <li>Bangla</li>
-                                        </ul>
                                 </div>
                             </div>
                         </div>
@@ -65,23 +58,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                             <div class="header__nav">
                                 <nav class="header__menu">
                                     <ul class="menu__class">
-                                        <li><a th:href="@{/user/home/all}">Home</a></li>
-                                        <li><a th:href="@{/user/room/all}">Rooms</a></li>
-                                        <li><a th:href="@{/user/about/all}">About Us</a></li>
-                                        <li><a href="#">Pages</a>
+<!--                                        <li><a th:href="@{/user/home/all}">Home</a></li>
+                                        <li><a th:href="@{/user/room/all}">Rooms</a></li>-->
+                                        <li><a th:href="@{/client/customer/homecontroller/all?userId={id}(id=${userId})}">Home Page</a></li>
+                                        <li><a th:href="@{/client/customer/roomcontroller/all?userId={id}(id=${userId})}">Our Rooms</a></li>
+                                        <li><a th:href="@{/client/customer/aboutcontroller/all?userId={id}(id=${userId})}">About Us</a></li>
+<!--                                        <li><a href="#">Pages</a>
                                             <ul class="dropdown">
                                                 <li><a th:href="@{/user/about/all}">About Us</a></li>
                                                 <li><a th:href="@{/user/room/details}">Room Details</a></li>
                                                 <li><a th:href="@{/user/blog/details}">Blog Details</a></li>
                                             </ul>
-                                        </li>
-                                        <li><a th:href="@{/user/blog/all}">News</a></li>
-                                        <li><a th:href="@{/user/contact/all}">Contact</a></li>
+                                        </li>-->
+                                        <li><a th:href="@{/client/customer/blogcontroller/all?userId={id}(id=${userId})}">Blogs</a></li>
+                                        <li><a th:href="@{/client/customer/contactcontroller/all?userId={id}(id=${userId})}">Contact Us</a></li>
                                     </ul>
                                 </nav>
-                                <div class="header__nav__widget">
+<!--                                <div class="header__nav__widget">
                                     <a href="#">Book Now <span class="arrow_right"></span></a>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -106,10 +101,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                                 <div class="footer__logo">
                                     <a href="#"><img th:src="@{/users/img/logo.png}" alt=""></a>
                                 </div>
-                                <h4>(123) 456-78-91096</h4>
+                                <h4>09-3838-2407</h4>
                                 <ul>
-                                    <li>Ernser Vista Suite 437, NY</li>
-                                    <li>Info.colorlib@gmail.com</li>
+                                    <li>590 Cach Mang Thang Tam P.11 Q.3 Tp.HCM</li>
+                                    <li>nguyenhuynhanhtuan2407@gmail.com</li>
                                 </ul>
                                 <div class="footer__social">
                                     <a href="#"><i class="fa fa-facebook"></i></a>

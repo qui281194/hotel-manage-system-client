@@ -21,14 +21,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div>
                                 <h2>Create Booking For Guest</h2>
                             </div>
-                            <form action="#" th:action="@{http://localhost:8888/client/admin/bookingcontroller/createbookingforguest}" th:object="${newBookingDto}" method="POST">
+                            
+<!--                            <form action="#" th:action="@{http://localhost:8888/client/admin/bookingcontroller/createbookingforguest}" th:object="${newBookingDto}" method="POST">
                                 <input type="hidden" th:field="*{room_id}">
                                 Guest Phone Number: <input type="text" th:field="*{customer_info.phone}"><br>
                                 Booking From: <input type="date" th:field="*{booking_from}"><br>
                                 Booking To: <input type="date" th:field="*{booking_to}"><br>
                                 Number of Member: <input type="number" th:field="*{number_of_member}"><br>
                                 <input type="submit" value="Create Booking">
-                            </form>
+                            </form>-->
+                            
+                            
+                            <div class="card card-primary">
+                                <div class="card-body">
+                                    <form action="#" th:action="@{http://localhost:8888/client/admin/bookingcontroller/createbookingforguest}" th:object="${newBookingDto}" method="POST">
+                                        <input type="hidden" th:field="*{room_id}">
+                                        
+                                        <div class="form-group">
+                                            Guest Phone Number: <input type="text" th:field="*{customer_info.phone}" class="form-control" placeholder="Enter Guest Phone Number..."><br>
+                                            <!--<p style="color: red" th:errors="*{room_no}" th:if="${#fields.hasErrors('room_no')}"></p>-->
+                                        </div>
+
+                                        <div class="form-group">
+                                            Booking From: <input type="date" th:field="*{booking_from}" class="form-control"><br>
+                                            <!--<p style="color: red" th:errors="*{room_price}" th:if="${#fields.hasErrors('room_price')}"></p>-->
+                                        </div>
+
+                                        <div class="form-group">
+                                            Booking To: <input type="date" th:field="*{booking_to}" class="form-control"><br>
+                                            <!--<p style="color: red" th:errors="*{room_image}" th:if="${#fields.hasErrors('room_image')}"></p>-->
+                                        </div>
+
+                                        <div class="form-group">
+                                            Number of Member: <input type="number" th:field="*{number_of_member}" class="form-control"><br>
+                                            <!--<p style="color: red" th:errors="*{room_capacity}" th:if="${#fields.hasErrors('room_capacity')}"></p>-->
+                                        </div>
+
+                                        <input type="submit" value="Create">
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

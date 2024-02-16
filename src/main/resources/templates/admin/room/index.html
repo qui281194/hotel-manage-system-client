@@ -38,15 +38,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="card-body">
                                 <div id="jsGrid1" class="jsgrid">
                                     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                                        <table  class="jsgrid-table">
+                                        <table  class="jsgrid-table" style="text-align: center">
                                             <thead>
                                                 <tr  class="jsgrid-header-row">
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
                                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Price</th>
                                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Image</th>
                                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Capacity</th>
-                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Description</th>
-                                                    <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Booking Status</th>
                                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Room Type</th>
                                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable">Action</th>
                                                 </tr>
@@ -55,10 +53,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <tr th:each="item : ${allRoomList}">
                                                     <td th:text="${item.room_no}"></td>
                                                     <td th:text="${item.room_price}"></td>
-                                                    <td th:text="${item.room_image}"></td>
+                                                    <td>
+                                                        <img th:src="${item.room_image}" width="100" height="100" alt="alt"/>
+                                                    </td>
                                                     <td th:text="${item.room_capacity}"></td>
-                                                    <td th:text="${item.room_description}"></td>
-                                                    <td th:text="${item.booking_status_info.booking_status_name}"></td>
                                                     <td th:text="${item.room_type_info.room_type_name}"></td>
                                                     <td>
                                                         <a th:href="@{http://localhost:8888/client/admin/roomcontroller/gotoupdate/{roomId}(roomId=${item.id})}" class="btn btn-primary">Update</a> | 

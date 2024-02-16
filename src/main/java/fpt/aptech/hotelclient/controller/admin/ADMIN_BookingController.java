@@ -6,8 +6,8 @@ package fpt.aptech.hotelclient.controller.admin;
 
 import fpt.aptech.hotelclient.dto.BookingDto;
 import fpt.aptech.hotelclient.dto.RoomDto;
+import fpt.aptech.hotelclient.dto.SearchDto;
 import fpt.aptech.hotelclient.dto.UserDto;
-import java.io.Console;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +43,17 @@ public class ADMIN_BookingController {
     
     @GetMapping("/gotoroomtobooking")
     public String goToRoomToBooking(Model model) {
-        List<RoomDto> allRoomActiveAndVacancy = _restTemplate.getForObject(room_api_url+"/allroomactiveandvacancy", List.class);
+        List<RoomDto> allRoomActiveAndVacancy = _restTemplate.getForObject(room_api_url+"/all", List.class);
+        model.addAttribute("searchDto", new SearchDto());
         model.addAttribute("allRoomActiveAndVacancy", allRoomActiveAndVacancy);
+        return "admin/booking/roomtobooking";
+    }
+    
+    @PostMapping("/availableroomtobooking") 
+    public String availableRoomToBooking(Model model , @ModelAttribute("searchDto") SearchDto searchDto) {
+        List<RoomDto> allRoomAvailable = _restTemplate.postForObject(booking_api_url+"/availableroomforbooking", searchDto , List.class);
+        model.addAttribute("searchDto", searchDto);
+        model.addAttribute("allRoomActiveAndVacancy", allRoomAvailable);
         return "admin/booking/roomtobooking";
     }
     

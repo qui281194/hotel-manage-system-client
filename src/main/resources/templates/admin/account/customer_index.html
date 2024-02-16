@@ -1,13 +1,16 @@
 <!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/admin/layout">
-
     <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>AdminLTE 3 | jsGrid</title>
-
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
         <!-- Font Awesome -->
@@ -18,7 +21,6 @@
         <!-- Theme style -->
         <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
     </head>
-
     <body>
         <div layout:fragment="content">
 
@@ -28,22 +30,19 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Staff Management</h1>
+                                <h1>Customer Management</h1>
                             </div>
                         </div>
                     </div><!-- /.container-fluid -->
                 </section>
 
                 <div>
-                    <a th:href="@{http://localhost:8888/client/admin/staffcontroller/gotocreate}" class="btn btn-primary">Create new Staff</a>
+                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/gotocreate}" class="btn btn-primary">Create new Customer</a>
                 </div>
 
                 <!-- Main content -->
                 <section class="content">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All Staff</h3>
-                        </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div id="jsGrid1" class="jsgrid">
@@ -59,15 +58,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="user : ${allStaff}">
+                                            <tr th:each="user : ${allCustomer}">
                                                 <td th:text="${user.username}"></td>
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.address}"></td>
                                                 <td th:text="${user.phone}"></td>
                                                 <td>
-                                                    <a th:href="@{/client/admin/staffcontroller/gotoupdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a>
-
-<!--                                                    <a th:href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger" onclick="confirmDelete(${user.id})">Delete</a>-->
+                                                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/bookinghistory/{customerId}(customerId=${user.id})}" class="btn btn-primary">Booking History</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -83,7 +80,8 @@
                 <!-- /.content -->
             </div>
         </div>
-
+        
+        
         <!-- jQuery -->
         <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
         <!-- Bootstrap 4 -->
@@ -96,7 +94,5 @@
         <!-- AdminLTE for demo purposes -->
         <script th:src="@{/admin/dist/js/demo.js}"></script>
         <!-- Page specific script -->
-
     </body>
-
 </html>
