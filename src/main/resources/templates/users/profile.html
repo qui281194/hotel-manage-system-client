@@ -4,58 +4,67 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/users/layout">
     <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Hiroto Template">
-        <meta name="keywords" content="Hiroto, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="UTF-8"/>
+        <meta name="description" content="Hiroto Template"/>
+        <meta name="keywords" content="Hiroto, unica, creative, html"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <title>Hotel Management - Customer Profile</title>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
-              rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+              rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
 
         <!-- Css Styles -->
-        <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/nice-select.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/jquery-ui.min.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
-        <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">
-    </head>
-<!--    <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        <!--        <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/nice-select.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/jquery-ui.min.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
+                <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">-->
+        <style>
+        /* Import Font Dancing Script */
+        @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+
+        /* Main */
+        .main {
+            margin-top: 2%;
+            margin-left: 5%;
+            font-size: 28px;
+            padding: 0 10px;
+            width: 58%;
         }
 
-        .user-details {
-            width: 400px;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        form div {
+        .main h2 {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
             margin-bottom: 10px;
         }
 
-        label {
-            display: block;
+        .main .card {
+            background-color: #fff;
+            border-radius: 18px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            margin-bottom: 20px;
+            padding: 20px 0 20px 50px;
         }
 
-        button {
-            margin-top: 10px;
+        .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 270px;
+            width: 80%;
         }
-    </style>-->
+
+        /* End */
+    </style>
+    </head>
+    
     <body>
         <div layout:fragment="content">
             <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
@@ -69,72 +78,91 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="content-wrapper">
                 <section class="content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-primary">
-                                <div class="container">
-                                    <div class="user-details">
-                                        <h2>Customer Profile Detail</h2>
-                                        <p><strong>Username:</strong> <span th:text="${userProfile.username}"></span></p>
-                                        <p><strong>Email:</strong> <span th:text="${userProfile.email}"></span></p>
-                                        <p><strong>Phone Number:</strong> <span th:text="${userProfile.phone}"></span></p>
-                                        <p><strong>Address:</strong> <span th:text="${userProfile.address}"></span></p>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="jsGrid1" class="jsgrid">
-                                            <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                                                <table class="jsgrid-table" style="text-align: center">
-                                                    <thead>
-                                                        <tr class="jsgrid-header-row">
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
-                                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr th:each="item : ${bookingList}">
-                                                            <td th:text="${item.booking_from}"></td>
-                                                            <td th:text="${item.booking_to}"></td>
-                                                            <td th:text="${item.room_info.room_no}"></td>
-                                                            <td th:text="${item.total_price}"></td>
-                                                            <td th:text="${item.booking_current_info.booking_current_name}"></td>
-                                                            <td>
-<!--                                                                <span th:switch="${item.booking_current_info.id}">
-                                                                    <span th:case="1">
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/confirmbooking/{bookingId}(bookingId=${item.id})}">Confirm</a> | 
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
-                                                                    </span>
-                                                                    <span th:case="2">
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
-                                                                    </span>
-                                                                    <span th:case="3">
-                                                                        <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a>
-                                                                    </span>
-                                                                    <span th:case="4">
-                                                                        <a>Booking Completed</a>
-                                                                    </span>
-                                                                    <span th:case="5">
-                                                                        <a>Booking Canceled</a>
-                                                                    </span>
-                                                                </span>-->
-                                                                <a href="#" class="btn btn-primary">Payment</a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="container">
+                        <div class="main">
+                            <h2>Customer Profile Detail</h2>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>:</td>
+                                                <td th:text="${userProfile.username}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td>:</td>
+                                                <td th:text="${userProfile.email}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone</td>
+                                                <td>:</td>
+                                                <td th:text="${userProfile.phone}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>:</td>
+                                                <td th:text="${userProfile.address}"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="jsGrid1" class="jsgrid">
+                                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                    <table class="jsgrid-table" style="text-align: center">
+                                        <thead>
+                                            <tr class="jsgrid-header-row">
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
+                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="item : ${bookingList}">
+                                                <td th:text="${item.booking_from}"></td>
+                                                <td th:text="${item.booking_to}"></td>
+                                                <td th:text="${item.room_info.room_no}"></td>
+                                                <td th:text="${item.total_price}"></td>
+                                                <td th:text="${item.booking_current_info.booking_current_name}"></td>
+                                                <td>
+                                                    <!--                                                                <span th:switch="${item.booking_current_info.id}">
+                                                                                                                        <span th:case="1">
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/confirmbooking/{bookingId}(bookingId=${item.id})}">Confirm</a> | 
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
+                                                                                                                        </span>
+                                                                                                                        <span th:case="2">
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
+                                                                                                                        </span>
+                                                                                                                        <span th:case="3">
+                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a>
+                                                                                                                        </span>
+                                                                                                                        <span th:case="4">
+                                                                                                                            <a>Booking Completed</a>
+                                                                                                                        </span>
+                                                                                                                        <span th:case="5">
+                                                                                                                            <a>Booking Canceled</a>
+                                                                                                                        </span>
+                                                                                                                    </span>-->
+                                                    <a href="#" class="btn btn-primary">Payment</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -142,29 +170,16 @@
                 </section>
             </div>
         </div>
-        
-        
-        <script th:src="@{/users/js/jquery-3.3.1.min.js}"></script>
-        <script th:src="@{/users/js/bootstrap.min.js}"></script>
-        <script th:src="@{/users/js/jquery.nice-select.min.js}"></script>
-        <script th:src="@{/users/js/jquery-ui.min.js}"></script>
-        <script th:src="@{/users/js/jquery.slicknav.js}"></script>
-        <script th:src="@{/users/js/owl.carousel.min.js}"></script>
-        <script th:src="@{/users/js/main.js}"></script>
 
-<!--        <script>
-            function validateForm() {
-                var newPassword = document.getElementById("newPassword").value;
-                var confirmPassword = document.getElementById("confirmPassword").value;
 
-                if (newPassword !== confirmPassword) {
-                    alert("New password and confirm password do not match");
-                    return false;
-                }
+        <!--        <script th:src="@{/users/js/jquery-3.3.1.min.js}"></script>
+                <script th:src="@{/users/js/bootstrap.min.js}"></script>
+                <script th:src="@{/users/js/jquery.nice-select.min.js}"></script>
+                <script th:src="@{/users/js/jquery-ui.min.js}"></script>
+                <script th:src="@{/users/js/jquery.slicknav.js}"></script>
+                <script th:src="@{/users/js/owl.carousel.min.js}"></script>
+                <script th:src="@{/users/js/main.js}"></script>-->
 
-                return true;
-            }
-        </script>-->
     </body>
 
 </html>

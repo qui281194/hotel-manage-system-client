@@ -61,12 +61,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <p style="color: red" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"></p>
                                         </div>
                                         
-                                        <div>
-                                            <input type="text" th:field="*{id}">
+                                        <div class="form-group">
+                                            <input type="text" th:field="*{id}" class="form-control">
                                         </div>
                                         
-                                        <div>
-                                            <input type="text" th:field="*{role_id}">
+                                        <div class="form-group">
+                                            <input type="text" th:field="*{role_id}" class="form-control">
                                         </div>
 
                                         <div class="row">
