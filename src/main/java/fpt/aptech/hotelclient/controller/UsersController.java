@@ -9,6 +9,7 @@ import fpt.aptech.hotelclient.dto.UserDto;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,25 +34,26 @@ public class UsersController {
             // Gọi API login
             ResponseEntity<UserDto> response = rest.postForEntity(apiUrl + "login", loginDto, UserDto.class);
 
-            if (response.getStatusCode() == HttpStatus.OK) {
-                UserDto loggedInUser = response.getBody();
+//            if (response.getStatusCode() == HttpStatus.OK) {
+            UserDto loggedInUser = response.getBody();
+            
+            if (loggedInUser.getActive() != true) {
+                model.addAttribute("active", "Your account has been locked");
+                return "login";
 
-                if (loggedInUser.getRole_id() == 1 || loggedInUser.getRole_id() == 2) {
-                    return "admin/dashboard";
-                } else if (loggedInUser.getRole_id() == 3) {
-                    return "redirect:http://localhost:8888/client/customer/homecontroller/all?userId="+loggedInUser.getId();
-                }
             }
+            if (loggedInUser.getRole_id() == 1 || loggedInUser.getRole_id() == 2) {
+                return "redirect:http://localhost:8888/client/admin/staffcontroller/all";
+            } 
+                return "redirect:http://localhost:8888/client/customer/homecontroller/all?userId=" + loggedInUser.getId();
+            
+//            }
         } catch (Exception ex) {
             // Xử lý lỗi chung
-            model.addAttribute("error", "An error occurred");
+            model.addAttribute("error", "Invalid username or password");
             return "login";
         }
-        // Đăng nhập không thành công, chuyển hướng tới trang đăng nhập với thông báo lỗi
-        model.addAttribute("error", "Invalid username or password");
-        return "login";
     }
-    // UsersController.java
 
     @RequestMapping("/users/register-customer")
     public String registerUser(Model model) {
@@ -61,24 +63,26 @@ public class UsersController {
 
     @PostMapping("/users/register-customer")
     public String registerNewCustomer(@ModelAttribute UserDto newUser, Model model) {
-        ResponseEntity<UserDto> responseEntity = rest.postForEntity(
-                apiUrl + "register",
-                newUser,
-                UserDto.class
-        );
 
-        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            // Đăng ký thành công, thực hiện các tác vụ khác nếu cần thiết
-            UserDto registeredUser = responseEntity.getBody();
-            model.addAttribute("user", registeredUser);
-            return "redirect:/login"; // Trả về view cho đăng ký thành công
-        } else if (responseEntity.getStatusCode() == HttpStatus.CONFLICT) {
-            // Email đã tồn tại, xử lý tương ứng
-            model.addAttribute("error", "Email already exists");
-            return "users/register"; // Trả về view cho trường hợp email đã tồn tại
-        } else {
-            return "error";
+        try {
+            ResponseEntity<UserDto> responseEntity = rest.postForEntity(
+                    apiUrl + "register",
+                    newUser,
+                    UserDto.class
+            );
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+                // Đăng ký thành công, thực hiện các tác vụ khác nếu cần thiết
+                UserDto registeredUser = responseEntity.getBody();
+                model.addAttribute("user", registeredUser);
+//                model.addAttribute("successregister", "You have successfully registered. Please login here!");
+                return "/login"; // Trả về view cho đăng ký thành công
+            }
+        } catch (Exception ex) {
+            model.addAttribute("error", "Email already exists !");
+//            model.addAttribute("active");
         }
+        model.addAttribute("newUser", new UserDto());
+        return "users/register";
     }
 
 }

@@ -35,6 +35,7 @@ public class UserDto {
     
     @NotBlank(message = "Phone number must be fill!!!")
     private String phone;
+    private Boolean active;
     private Integer role_id;
     private RoleDto roleInfo;
 }

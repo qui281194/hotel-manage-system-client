@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/springframework/Controller.java to edit this template
  */
@@ -7,12 +7,6 @@ package fpt.aptech.hotelclient.controller.admin;
 import fpt.aptech.hotelclient.dto.UserDto;
 import jakarta.validation.Valid;
 import java.util.List;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -76,9 +69,28 @@ public class ADMIN_StaffController {
     
     @PostMapping("/update")
     public String updateStaffInformation(Model model , @ModelAttribute("updateStaff") @Valid UserDto updateStaff , BindingResult bdResult) {
-        _restTemplate.put(user_api_url+"/edit/"+updateStaff.getId(), updateStaff);
+        _restTemplate.put(user_api_url+"/update/" + updateStaff.getId(), updateStaff);
         
         return "redirect:http://localhost:8888/client/admin/staffcontroller/all";
     }
      
+    @GetMapping("/activeuser/{id}")
+    public String activeUser(Model model , @PathVariable("id") int id) {
+        UserDto userDtoInfo = _restTemplate.getForObject(user_api_url + "/findbyid/" + id , UserDto.class);
+        userDtoInfo.setActive(true);
+        
+        _restTemplate.put(user_api_url + "/update", userDtoInfo);
+        
+        return "redirect:http://localhost:8888/client/admin/staffcontroller/all";
+    }
+    
+    @GetMapping("/disableuser/{id}")
+    public String disableUser(Model model , @PathVariable("id") int id) {
+        UserDto userDtoInfo = _restTemplate.getForObject(user_api_url+"/findbyid/"+id , UserDto.class);
+        userDtoInfo.setActive(false);
+        
+        _restTemplate.put(user_api_url+"/update", userDtoInfo);
+        
+        return "redirect:http://localhost:8888/client/admin/staffcontroller/all";
+    }
 }

@@ -68,4 +68,23 @@ public class ADMIN_CustomerController {
         }
     }
     
+    @GetMapping("/activeuser/{id}")
+    public String activeUser(Model model , @PathVariable("id") int id) {
+        UserDto userDtoInfo = _restTemplate.getForObject(user_api_url + "/findbyid/" + id , UserDto.class);
+        userDtoInfo.setActive(true);
+        
+        _restTemplate.put(user_api_url + "/update", userDtoInfo);
+        
+        return "redirect:http://localhost:8888/client/admin/customercontroller/all";
+    }
+    
+    @GetMapping("/disableuser/{id}")
+    public String disableUser(Model model , @PathVariable("id") int id) {
+        UserDto userDtoInfo = _restTemplate.getForObject(user_api_url+"/findbyid/"+id , UserDto.class);
+        userDtoInfo.setActive(false);
+        
+        _restTemplate.put(user_api_url+"/update", userDtoInfo);
+        
+        return "redirect:http://localhost:8888/client/admin/customercontroller/all";
+    }
 }

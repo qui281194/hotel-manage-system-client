@@ -10,6 +10,7 @@
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css}"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
         <!-- jsGrid -->
@@ -17,12 +18,14 @@
         <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid-theme.min.css}"/>
         <!-- Theme style -->
         <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
-    </head>
 
+    </head>
     <body>
         <div layout:fragment="content">
 
-            <div class="content-wrapper" style="min-height: 1302.4px;">
+            <div class="content-wrapper" ata-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+                     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full" 
+                     style="min-height: 1302.4px;">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <div class="container-fluid">
@@ -42,13 +45,14 @@
                 <section class="content">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">All Staff</h3>
+                            <h3 class="card-title"></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div id="jsGrid1" class="jsgrid">
                                 <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                                    <table class="jsgrid-table" style="text-align: center">
+                                    <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->                                        
+                                    <table class="jsgrid-table"  style="text-align: center">
                                         <thead>
                                             <tr class="jsgrid-header-row">
                                                 <th class="jsgrid-header-cell jsgrid-header-sortable" >Username</th>
@@ -58,16 +62,21 @@
                                                 <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="myTable">
                                             <tr th:each="user : ${allStaff}">
                                                 <td th:text="${user.username}"></td>
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.address}"></td>
                                                 <td th:text="${user.phone}"></td>
                                                 <td>
-                                                    <a th:href="@{/client/admin/staffcontroller/gotoupdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a>
+<!--                                                    <a th:href="@{/client/admin/staffcontroller/gotoupdate/{id}(id=${user.id})}" class="btn btn-primary">Detail</a> | -->
+                                                    <span th:if="${user.active == true}">
+                                                        <a th:href="@{/client/admin/staffcontroller/disableuser/{id}(id=${user.id})}" class="btn btn-danger">Disable</a>
+                                                    </span>
+                                                    <span th:unless="${user.active == true}">
+                                                        <a th:href="@{/client/admin/staffcontroller/activeuser/{id}(id=${user.id})}" class="btn btn-primary">Active</a>
+                                                    </span>
 
-<!--                                                    <a th:href="@{/admin/user/{id}/delete(id=${user.id})}" class="btn btn-danger" onclick="confirmDelete(${user.id})">Delete</a>-->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -83,7 +92,16 @@
                 <!-- /.content -->
             </div>
         </div>
-
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
         <!-- jQuery -->
         <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
         <!-- Bootstrap 4 -->
@@ -96,6 +114,9 @@
         <!-- AdminLTE for demo purposes -->
         <script th:src="@{/admin/dist/js/demo.js}"></script>
         <!-- Page specific script -->
+        <script th:src="@{https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js}"></script>
+        <script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js}"></script>
+        <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js}"></script>
 
     </body>
 

@@ -64,7 +64,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <td th:text="${user.address}"></td>
                                                 <td th:text="${user.phone}"></td>
                                                 <td>
-                                                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/bookinghistory/{customerId}(customerId=${user.id})}" class="btn btn-primary">Booking History</a>
+                                                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/bookinghistory/{customerId}(customerId=${user.id})}" class="btn btn-primary">Booking History</a> | 
+                                                    <span th:if="${user.active == true}">
+                                                        <a th:href="@{/client/admin/customercontroller/disableuser/{id}(id=${user.id})}" class="btn btn-danger">Disable</a>
+                                                    </span>
+                                                    <span th:unless="${user.active == true}">
+                                                        <a th:href="@{/client/admin/customercontroller/activeuser/{id}(id=${user.id})}" class="btn btn-primary">Active</a>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </tbody>

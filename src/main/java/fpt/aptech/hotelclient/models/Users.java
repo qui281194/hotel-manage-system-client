@@ -48,6 +48,8 @@ public class Users implements Serializable {
     @NotEmpty(message = "Phone is required")
     @Column(name = "phone")
     private String phone;
+    @Column(name = "active")
+    private Boolean active;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
     private Role roleId;

@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"/>
         <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css"/>
@@ -35,10 +35,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                             <div class="header__top__right">
                                 <div class="header__top__auth">
                                     <ul>
-                                        <li th:if="${userId == null}"><a th:href="@{/login}">Login</a></li>
-                                        <li th:if="${userId == null}"><a th:href="@{/users/register-customer}">Register</a></li>
-                                        <li th:if="${userId != null}"><a th:href="@{/client/customer/profilecontroller/all?userId={id}(id=${userId})}">Your Profile</a></li>
-                                        <li th:if="${userId != null}"><a th:href="@{/login}">Logout</a></li>
+                                        <li th:if="${userId == 0}"><a th:href="@{/login}">Login</a></li>
+                                        <li th:if="${userId == 0}"><a th:href="@{/users/register-customer}">Register</a></li>
+                                        <li th:if="${userId != 0}"><a th:href="@{/client/customer/profilecontroller/all?userId={id}(id=${userId})}">Your Profile</a></li>
+                                        <li th:if="${userId != 0}"><a th:href="@{/login}">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -50,27 +50,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/thymeleaf.html to edit this
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-2">
-                            <div class="header__logo">
-                                <a th:href="@{/user/home/all}"><img th:src="@{/users/img/logo.png}" alt=""></a>
-                            </div>
+                                <h4 style="padding: 20px 0px">&ensp;<img th:src="@{/image/logo2.jpg}" alt=""/></h4>
                         </div>
                         <div class="col-lg-10">
                             <div class="header__nav">
                                 <nav class="header__menu">
                                     <ul class="menu__class">
-<!--                                        <li><a th:href="@{/user/home/all}">Home</a></li>
-                                        <li><a th:href="@{/user/room/all}">Rooms</a></li>-->
                                         <li><a th:href="@{/client/customer/homecontroller/all?userId={id}(id=${userId})}">Home Page</a></li>
                                         <li><a th:href="@{/client/customer/roomcontroller/all?userId={id}(id=${userId})}">Our Rooms</a></li>
                                         <li><a th:href="@{/client/customer/aboutcontroller/all?userId={id}(id=${userId})}">About Us</a></li>
-<!--                                        <li><a href="#">Pages</a>
-                                            <ul class="dropdown">
-                                                <li><a th:href="@{/user/about/all}">About Us</a></li>
-                                                <li><a th:href="@{/user/room/details}">Room Details</a></li>
-                                                <li><a th:href="@{/user/blog/details}">Blog Details</a></li>
-                                            </ul>
-                                        </li>-->
-                                        <li><a th:href="@{/client/customer/blogcontroller/all?userId={id}(id=${userId})}">Blogs</a></li>
+                                        <li><a th:href="@{/client/customer/blogcontroller/all?userId={id}(id=${userId})}">News</a></li>
                                         <li><a th:href="@{/client/customer/contactcontroller/all?userId={id}(id=${userId})}">Contact Us</a></li>
                                     </ul>
                                 </nav>

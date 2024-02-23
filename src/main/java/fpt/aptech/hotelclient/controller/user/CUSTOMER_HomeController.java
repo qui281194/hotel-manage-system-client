@@ -18,9 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CUSTOMER_HomeController {
     
     @RequestMapping("/all")
-    public String page(Model model , @RequestParam("userId") int userId) {
-        model.addAttribute("userId", userId);
-        return "users/home";
+    public String page(Model model , @RequestParam(name = "userId" , required = false) String userId) {
+        if(userId == null) {
+            int userIdToInt = 0;
+            model.addAttribute("userId", userIdToInt);
+            return "users/home";
+        }
+        else {
+            int userIdToInt = Integer.parseInt(userId);
+            model.addAttribute("userId", userIdToInt);
+            return "users/home";    
+        }
+        
     }
     
 }

@@ -73,6 +73,11 @@ public class CUSTOMER_RoomController {
     
     @PostMapping("/confirmbookingdetail")
     public String customerConfirmBookingDetail(Model model, @RequestParam("userId") int userId , @ModelAttribute("newBookingDto") BookingDto newBookingDto) {
+        if(userId == 0) {
+            model.addAttribute("errorBooking", "Please Login To Booking");
+            return "login";
+        }
+        
         newBookingDto.setIs_active(true);
         BookingDto bookingDetail = _restTemplate.postForObject(booking_api_url+"/confirmbookingdetail", newBookingDto, BookingDto.class);
         

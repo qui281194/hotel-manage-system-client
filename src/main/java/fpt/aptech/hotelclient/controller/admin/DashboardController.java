@@ -4,6 +4,7 @@
  */
 package fpt.aptech.hotelclient.controller.admin;
 
+import fpt.aptech.hotelclient.dto.RoomDto;
 import fpt.aptech.hotelclient.dto.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -70,38 +71,7 @@ public class DashboardController {
         }
     }
 
-    @PostMapping("/users/change-password")
-    public String changePassword(@RequestParam("currentPassword") String currentPassword,
-            @RequestParam("newPassword") String newPassword,
-            Model model) {
-        UserDto currentUser = getCurrentUser();
-
-        if (currentUser != null) {
-            // Gọi API để thay đổi mật khẩu của người dùng
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            Map<String, String> requestParams = new HashMap<>();
-            requestParams.put("currentPassword", currentPassword);
-            requestParams.put("newPassword", newPassword);
-
-            HttpEntity<Map<String, String>> request = new HttpEntity<>(requestParams, headers);
-            ResponseEntity<String> response = rest.exchange(apiUrl + currentUser.getId() + "/change-password",
-                    HttpMethod.POST,
-                    request,
-                    String.class);
-
-            if (response.getStatusCode() == HttpStatus.OK) {
-                model.addAttribute("message", "Password changed successfully");
-            } else {
-                model.addAttribute("error", "Failed to change password");
-            }
-        } else {
-            model.addAttribute("error", "User not found");
-        }
-
-        return "users/change-password-result";
-    }
+    
 
     @RequestMapping("/admin/create-user")
     public String createUser(Model model) {
@@ -172,23 +142,15 @@ public class DashboardController {
             return "redirect:/admin/user/{id}/edit";
         }
     }
+    
+//    @RequestMapping("/profile")
+//    public String profile(Model model , @RequestParam("userId") int userId) {
+//        UserDto userProfile = rest.getForObject(apiUrl+"/findbyid/"+userId, UserDto.class);
+//        model.addAttribute("userId", userId);
+//        model.addAttribute("userProfile", userProfile);
+//        return "admin/staff_profile";
+//    }
 
-// Phương thức xóa người dùng
-    @GetMapping("/admin/user/{id}/delete")
-    public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-        // Gọi API để xóa người dùng
-        ResponseEntity<String> response = rest.exchange(apiUrl + id,
-                HttpMethod.DELETE,
-                null,
-                String.class);
-
-        if (response.getStatusCode() == HttpStatus.OK) {
-            redirectAttributes.addFlashAttribute("message", "User deleted successfully");
-        } else {
-            redirectAttributes.addFlashAttribute("error", "Failed to delete user");
-        }
-
-        return "redirect:/admin/all-staff";
-    }
+    
 
 }

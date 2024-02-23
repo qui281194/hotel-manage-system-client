@@ -10,61 +10,51 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         <title>Hotel Management - Customer Profile</title>
-
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"/>
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
               rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
-
-        <!-- Css Styles -->
-        <!--        <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/elegant-icons.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/nice-select.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/jquery-ui.min.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/owl.carousel.min.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/slicknav.min.css}" type="text/css">
-                <link rel="stylesheet" th:href="@{/users/css/style.css}" type="text/css">-->
         <style>
-        /* Import Font Dancing Script */
-        @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+            /* Import Font Dancing Script */
+            @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 
-        /* Main */
-        .main {
-            margin-top: 2%;
-            margin-left: 5%;
-            font-size: 28px;
-            padding: 0 10px;
-            width: 58%;
-        }
+            /* Main */
+            .main {
+                margin-top: 2%;
+                margin-left: 5%;
+                font-size: 28px;
+                padding: 0 10px;
+                width: 58%;
+            }
 
-        .main h2 {
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+            .main h2 {
+                color: #333;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
 
-        .main .card {
-            background-color: #fff;
-            border-radius: 18px;
-            box-shadow: 1px 1px 8px 0 grey;
-            height: auto;
-            margin-bottom: 20px;
-            padding: 20px 0 20px 50px;
-        }
+            .main .card {
+                background-color: #fff;
+                border-radius: 18px;
+                box-shadow: 1px 1px 8px 0 grey;
+                height: auto;
+                margin-bottom: 20px;
+                padding: 20px 0 20px 50px;
+            }
 
-        .main .card table {
-            border: none;
-            font-size: 16px;
-            height: 270px;
-            width: 80%;
-        }
+            .main .card table {
+                border: none;
+                font-size: 16px;
+                height: 270px;
+                width: 80%;
+            }
 
-        /* End */
-    </style>
+            /* End */
+        </style>
     </head>
-    
+
     <body>
         <div layout:fragment="content">
             <div class="breadcrumb-option set-bg" th:data-setbg="@{/users/img/breadcrumb-bg.jpg}">
@@ -82,103 +72,103 @@
             <div class="content-wrapper">
                 <section class="content">
                     <div class="container">
-                        <div class="main">
-                            <h2>Customer Profile Detail</h2>
-                            <div class="card">
-                                <div class="card-body">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>:</td>
-                                                <td th:text="${userProfile.username}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Email</td>
-                                                <td>:</td>
-                                                <td th:text="${userProfile.email}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Phone</td>
-                                                <td>:</td>
-                                                <td th:text="${userProfile.phone}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td>:</td>
-                                                <td th:text="${userProfile.address}"></td>
-                                            </tr>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="main">
+                                    <h2>Customer Profile Detail</h2>
+                                    <div class="card">
+                                        <div class="card-body row">
 
-                                        </tbody>
-                                    </table>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>:</td>
+                                                        <td th:text="${userProfile.username}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>:</td>
+                                                        <td th:text="${userProfile.email}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Phone</td>
+                                                        <td>:</td>
+                                                        <td th:text="${userProfile.phone}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address</td>
+                                                        <td>:</td>
+                                                        <td th:text="${userProfile.address}"></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div id="jsGrid1" class="jsgrid">
-                                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
-                                    <table class="jsgrid-table" style="text-align: center">
-                                        <thead>
-                                            <tr class="jsgrid-header-row">
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
-                                                <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="item : ${bookingList}">
-                                                <td th:text="${item.booking_from}"></td>
-                                                <td th:text="${item.booking_to}"></td>
-                                                <td th:text="${item.room_info.room_no}"></td>
-                                                <td th:text="${item.total_price}"></td>
-                                                <td th:text="${item.booking_current_info.booking_current_name}"></td>
-                                                <td>
-                                                    <!--                                                                <span th:switch="${item.booking_current_info.id}">
-                                                                                                                        <span th:case="1">
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/confirmbooking/{bookingId}(bookingId=${item.id})}">Confirm</a> | 
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
-                                                                                                                        </span>
-                                                                                                                        <span th:case="2">
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkinbooking/{bookingId}(bookingId=${item.id})}">Check-In</a> | 
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a> | 
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/cancelbooking/{bookingId}(bookingId=${item.id})}">Cancel</a>
-                                                                                                                        </span>
-                                                                                                                        <span th:case="3">
-                                                                                                                            <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/checkoutbooking/{bookingId}(bookingId=${item.id})}">Check-Out</a>
-                                                                                                                        </span>
-                                                                                                                        <span th:case="4">
-                                                                                                                            <a>Booking Completed</a>
-                                                                                                                        </span>
-                                                                                                                        <span th:case="5">
-                                                                                                                            <a>Booking Canceled</a>
-                                                                                                                        </span>
-                                                                                                                    </span>-->
-                                                    <a href="#" class="btn btn-primary">Payment</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="col-4" style="padding-top: 50px">
+<!--                                <small class="text-danger" th:if="${#fields.hasErrors('passwordChangeError')}" th:errors="*{passwordChangeError}"></small>-->
+                                <small class="text-danger" th:if="${passwordChangeError}" th:text="${passwordChangeError}"></small>
+                                <small class="text-danger" th:if="${error}" th:text="${error}"></small>
+                                <small class="text-success" th:if="${success}" th:text="${success}"></small>
+                                <div th:if="${success}" style="color: green;"><p class="login-box-msg">You have successfully registered. Please login here!</p></div>
+                                <form method="post" th:action="@{/client/customer/profilecontroller/{userId}/changepassword(userId=${userId})}">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label><span style="color: red"> *</span>
+                                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label><span style="color: red"> *</span>
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label><span style="color: red"> *</span>
+                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </section>
+
+                    <div class="card-body">
+                        <div id="jsGrid1" class="jsgrid">
+                            <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                <table class="jsgrid-table" style="text-align: center">
+                                    <thead>
+                                        <tr class="jsgrid-header-row">
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="item : ${bookingList}">
+                                            <td th:text="${item.booking_from}"></td>
+                                            <td th:text="${item.booking_to}"></td>
+                                            <td th:text="${item.room_info.room_no}"></td>
+                                            <td th:text="${item.total_price}"></td>
+                                            <td th:text="${item.booking_current_info.booking_current_name}"></td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary">Payment</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
             </div>
+            </section>
+        </div>
         </div>
 
-
-        <!--        <script th:src="@{/users/js/jquery-3.3.1.min.js}"></script>
-                <script th:src="@{/users/js/bootstrap.min.js}"></script>
-                <script th:src="@{/users/js/jquery.nice-select.min.js}"></script>
-                <script th:src="@{/users/js/jquery-ui.min.js}"></script>
-                <script th:src="@{/users/js/jquery.slicknav.js}"></script>
-                <script th:src="@{/users/js/owl.carousel.min.js}"></script>
-                <script th:src="@{/users/js/main.js}"></script>-->
 
     </body>
 
