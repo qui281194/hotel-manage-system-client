@@ -156,7 +156,7 @@
                                             <td th:text="${item.total_price}"></td>
                                             <td th:text="${item.booking_current_info.booking_current_name}"></td>
                                             <td>
-                                                <a href="#" class="btn btn-primary">Payment</a>
+                                                <a th:href="@{http://localhost:8888/client/customer/paymentcontroller/showinvoke?userId={userId}&bookingId={bookingId}(userId=${userId},bookingId=${item.id})}" class="btn btn-primary">Payment</a>
                                             </td>
                                         </tr>
                                     </tbody>
