@@ -59,49 +59,28 @@ public class CUSTOMER_ProfileController {
     ) {
 
         if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("userId", userId);
             model.addAttribute("passwordChangeError", "New password and confirm password do not match.");
-            return "redirect:/client/customer/profilecontroller/all?userId=" + userId;
+            return "users/profile";
         }
 
         ResponseEntity<String> responseEntity = _restTemplate.postForEntity(user_api_url + "/" + userId + "/change-password?currentPassword=" + currentPassword + "&newPassword=" + newPassword, null, String.class);
 
-        if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-            model.addAttribute("success", "Password changed successfully.");
-            return "redirect:/client/customer/profilecontroller/all?userId=" + userId;
+        if (responseEntity.getBody().equals("Password changed successfully.")) {
+            UserDto userProfile = _restTemplate.getForObject(user_api_url + "/findbyid/" + userId, UserDto.class);
+            model.addAttribute("userProfile", userProfile);
+            model.addAttribute("userId", userId);
+            model.addAttribute("successPassword", "Password changed successfully.");
+            return "users/profile";
+        }else{
+            UserDto userProfile = _restTemplate.getForObject(user_api_url + "/findbyid/" + userId, UserDto.class);
+        model.addAttribute("userProfile", userProfile);
+
+        model.addAttribute("userId", userId);
+        model.addAttribute("error", "Failed to change password. Please check your current password.");
+        return "users/profile";
         }
-        model.addAttribute("error", responseEntity.getBody());
-        return "redirect:/client/customer/profilecontroller/all?userId=" + userId;
+//        (responseEntity.getStatusCode().equals(HttpStatus.BAD_REQUEST))
     }
 
-//    @PostMapping("/{userId}/changepassword")
-//    public String changePassword(@RequestParam("currentPassword") String currentPassword,
-//            @RequestParam("newPassword") String newPassword, @RequestParam("confirmPassword") String confirmPassword, @RequestParam("userId") int userId,
-//            Model model) {
-//        if (!newPassword.equals(confirmPassword)) {
-//            model.addAttribute("passwordChangeError", "New password and confirm password do not match.");
-//            return "redirect:/client/customer/profilecontroller/all?userId=" + userId;
-//        }
-//        // Gọi API để thay đổi mật khẩu của người dùng
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        Map<String, String> requestParams = new HashMap<>();
-//        requestParams.put("currentPassword", currentPassword);
-//        requestParams.put("newPassword", newPassword);
-//        requestParams.put("confirmPassword", confirmPassword);
-//
-//        HttpEntity<Map<String, String>> request = new HttpEntity<>(requestParams, headers);
-//        ResponseEntity<String> response = _restTemplate.exchange(user_api_url + "/" + userId + "/change-password",
-//                HttpMethod.POST,
-//                request,
-//                String.class);
-//
-//        if (response.getStatusCode() == HttpStatus.OK) {
-//            model.addAttribute("success", "Password changed successfully");
-//        } else {
-//            model.addAttribute("error", "Failed to change password");
-//        }
-//
-//        return "users/profile";
-//    }
 }

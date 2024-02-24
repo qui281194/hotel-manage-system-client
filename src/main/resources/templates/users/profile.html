@@ -113,7 +113,7 @@
 <!--                                <small class="text-danger" th:if="${#fields.hasErrors('passwordChangeError')}" th:errors="*{passwordChangeError}"></small>-->
                                 <small class="text-danger" th:if="${passwordChangeError}" th:text="${passwordChangeError}"></small>
                                 <small class="text-danger" th:if="${error}" th:text="${error}"></small>
-                                <small class="text-success" th:if="${success}" th:text="${success}"></small>
+                                <small class="text-success" th:if="${successPassword}" th:text="${successPassword}"></small>
                                 <div th:if="${success}" style="color: green;"><p class="login-box-msg">You have successfully registered. Please login here!</p></div>
                                 <form method="post" th:action="@{/client/customer/profilecontroller/{userId}/changepassword(userId=${userId})}">
                                     <div class="form-group">
